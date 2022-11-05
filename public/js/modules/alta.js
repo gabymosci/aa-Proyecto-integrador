@@ -34,14 +34,14 @@ class PageAlta {
         
             document.querySelector('.main-header__delete-modalbox').style.display = 'flex';
         
-            pauseUntilEventYes(createClickListenerPromise(buttonYes));
-            pauseUntilEventNo(createClickListenerPromise(buttonNo));
+            pauseUntilButtonYes(createPromise(buttonYes));
+            pauseUntilButtonNo(createPromise(buttonNo));
         
-            function createClickListenerPromise (target) {
+            function createPromise (target) {
                 return new Promise((resolve) => target.addEventListener('click', resolve)) ;
             }
         
-            async function pauseUntilEventYes (clickListenerPromise)  {
+            async function pauseUntilButtonYes (clickListenerPromise)  {
                 await clickListenerPromise
                 document.querySelector('.main-header__delete-modalbox').style.display = 'none';;
                 const deletedProduct = await productController.deleteProduct(id);
@@ -49,7 +49,7 @@ class PageAlta {
                 return deletedProduct;
             }
         
-            async function pauseUntilEventNo (clickListenerPromise)  {
+            async function pauseUntilButtonNo (clickListenerPromise)  {
                 await clickListenerPromise
                 document.querySelector('.main-header__delete-modalbox').style.display = 'none';;
                 PageAlta.rowEdit.classList.remove('deleteRow');

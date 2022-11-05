@@ -10,7 +10,10 @@
         "freeDelivery": 0,
         "fromAge": 2,
         "toAge": 3,
-        "image": "j-muneca.jpg"
+		"ageYM": "Y",
+        "image": "j-muneca.jpg",
+		"card": true,
+		"id": "1"
     },
     {
         "name": "Uno",
@@ -23,7 +26,10 @@
         "freeDelivery": 0,
         "fromAge": 7,
         "toAge": 15,
-        "image": "j-uno.jpg"
+		"ageYM": "Y",
+        "image": "j-uno.jpg",
+		"card": true,
+		"id": "2"
     },
     {
         "name": "DigHealth Dinosaurios",
@@ -36,7 +42,10 @@
         "freeDelivery": 0,
         "fromAge": 5,
         "toAge": 7,
-        "image": "j-dinosaurios.jpg"
+		"ageYM": "Y",
+        "image": "j-dinosaurios.jpg",
+		"card": true,
+		"id": "3"
     },
     {
         "name": "Chicco First Bike",
@@ -49,7 +58,10 @@
         "freeDelivery": 0,
         "fromAge": 4,
         "toAge": 6,
-        "image": "j-bicicleta.jpg"
+		"ageYM": "Y",
+        "image": "j-bicicleta.jpg",
+		"card": true,
+		"id": "4"
     },
     {
         "name": "Cámara digital",
@@ -62,7 +74,10 @@
         "freeDelivery": 0,
         "fromAge": 7,
         "toAge": 12,
-        "image": "j-camara_digital.jpg"
+		"ageYM": "Y",
+        "image": "j-camara_digital.jpg",
+		"card": true,
+		"id": "5"
     },
     {
         "name": "Torre de bloques Nene",
@@ -75,7 +90,10 @@
         "freeDelivery": 0,
         "fromAge": 4,
         "toAge": 10,
-        "image": "j-bloques.jpg"
+		"ageYM": "Y",
+        "image": "j-bloques.jpg",
+		"card": true,
+		"id": "6"
     }
 
 ]
