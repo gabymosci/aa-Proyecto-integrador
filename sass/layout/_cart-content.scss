@@ -1,0 +1,279 @@
+.main-header {
+    
+    /* *******************************************************************
+    *                            Cart Content                            *
+    ******************************************************************* */
+    &__cart-modalbox {
+        display: none;  
+        // display: flex;  //*** sólo para desarrollo ***
+        position: fixed;
+        z-index: 1; 
+        left: 0;
+        top: 80px;
+        width: 100%; 
+        height: 100%; 
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0,0.5); 
+        justify-content: center;
+    }
+
+    &__cart-content {
+        background-color: rgba(198, 215, 225, .95);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        position: absolute;
+        padding: 1em;
+        width: 400px;
+        height: 600px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        
+        &-button-close {
+            background-image: url('../img/i-cerrar.png');
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: 25px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            transition: .2s;
+
+            &:hover {
+                transform: scale(1.2);
+                background-color: white;
+            }
+        }
+
+        /* ******************************************************************
+        *                           Cada Producto                           *
+        ****************************************************************** */
+        &-products {
+            background-color: white;
+            display: flex;
+            position: relative;
+            box-shadow: var(--box-shadow);
+            font-size: 12px;
+            font-weight: bold;
+            height: 60px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+            transition: .5s;
+
+            &:hover {
+                transform: scale(1.02);
+            }
+
+            &-image img {
+                width: 50px;
+                border-radius: 4px;
+                margin-top: 5px;
+                margin-left: 2em;
+                box-shadow: var(--box-shadow);
+            }
+
+            &-description {
+                position: absolute;
+                top: 10px;
+                left: 80px;
+                width: 135px;
+            }
+
+            &-price {
+                position: absolute;
+                top: 10px;
+                left: 215px;
+                color: rgb(201, 54, 54);
+            }
+
+            &-quantity {
+                position: absolute;
+                top: 22px;
+                left: 258px;
+                color: rgb(201, 54, 54);
+
+            }
+            &-quantity input {
+                position: absolute;
+                background-color: var(--section-footer-bg);
+                border-radius: 4px;
+                border: none;
+                width: 30px;
+                height: 20px;
+                top: -3px;
+                left: 13px;
+                box-shadow: var(--box-shadow);
+
+                &:focus {
+                    background-color: var(--link-hover-bg);
+                    outline: none;
+                }
+            }
+
+            &-subtotal {
+                position: absolute;
+                top: 10px;
+                left: 305px;
+                color: rgb(201, 54, 54);
+            }
+
+            &-delete {
+                background-image: url('../img/i-cerrar-r.png');
+                position: absolute;
+                top: 22px;
+                left: 5px;
+                background-repeat: no-repeat;
+                background-size: 15px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    transform: scale(1.5);
+                }
+            }
+
+        }
+    }
+
+    /* ******************************************************************
+    *                        Cart Content footer                        *
+    ****************************************************************** */
+    
+    &__cart-content-footer {
+        background-color: var(--section-footer-bg);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        box-shadow: var(--box-shadow);
+        padding: .5em;
+        margin-top: 1em;
+
+    }
+
+    &__cart-content-footer-total {
+        width: auto;
+        font-weight: bold;
+        line-height: 2em;
+        color: rgb(201, 54, 54);
+    }
+
+    &__cart-content-btn-buy {
+        justify-content: flex-end;
+        padding-top: 2px;
+    }
+
+    &__cart-content-btn-buy button {
+        background-color: hsl(134, 58%, 40%);
+        color: white;
+        border-radius: 4px;
+        padding: .3em;
+        box-shadow: var(--box-shadow);
+        border: none;
+        transition: .2s;
+
+        &:hover {
+            background-color: hsl(134, 58%, 50%);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: hsl(134, 58%, 40%);
+            color: hsl(0, 0%, 90%);
+        }
+    }
+}
+
+// -----------------------------------Efecto visuales
+.in {
+    animation-name: in;
+    animation-duration: .4s;
+
+    @keyframes in {
+        from {
+            top: -600px;
+            opacity: 0;
+        }
+        to {
+            top: 0px;
+            opacity: .9;
+        }
+    }
+}
+
+.out {
+    animation-name: out;
+    animation-duration: .4s;
+
+    @keyframes out {
+        from {
+            top: 0px;
+            opacity: 1;
+        }
+        to {
+            top: -600px;
+            opacity: 0;
+        }
+    }
+}
+
+.add {
+    animation-name: add;
+    animation-duration: .7s;
+
+    @keyframes add {
+            from {
+            background-color: yellow;
+            transform: scale(2);
+        }
+        to {
+            background-color: yellow;
+            transform: scale(1);
+        }
+    }
+
+}
+
+.change {
+    animation-name: change;
+    animation-duration: .7s;
+
+    @keyframes change {
+            from {
+            background-color: yellow;
+            transform: scale(1.1);
+        }
+        to {
+            background-color: yellow;
+            transform: scale(1);
+        }
+    }
+
+}
+
+.delete {
+    animation-name: delete;
+    animation-duration: .7s;
+
+    @keyframes delete {
+        from {
+            background-color: red;
+            transform: scale(1);
+        }
+        to {
+            background-color: rgba(198, 215, 225, .95);
+            transform: scale(0);
+        }
+    }
+}
+

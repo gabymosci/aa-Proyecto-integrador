@@ -1,0 +1,127 @@
+<section class="section-add">
+    <header class="section-add__header">
+        <h1>CURL de productos</h1>
+        <p>Datos del producto</p>
+    </header>
+
+    <div class="add-container">
+        <form class="form-product" id="add-form" autocomplete="off">
+            <div  class="add-container__fields">
+                <div class="field">
+                    <label for="name">Nombre<sup class="required">*</sup></label>
+                    <input type="text" id="name" name="name" autofocus>
+                </div>
+        
+                <div class="field">
+                    <label for="price">Precio</label>
+                    <input type="text" id="price" name="price">
+                </div>
+        
+                <div class="field">
+                    <label for="stock">Stock</label>
+                    <input type="text" id="stock" name="stock">
+                </div>
+        
+                <div class="field">
+                    <label for="brand">Marca</label>
+                    <input type="text" id="brand" name="brand">
+                </div>
+        
+                <div class="field">
+                    <label for="category">Categoría</label>
+                    <input type="text" id="category" name="category">
+                </div>
+        
+                <div class="field">
+                    <label for="shortDescription">Descripción corta<sup class="required">*</sup></label>
+                    <input type="text" id="shortDescription" name="shortDescription">
+                </div>
+        
+                <div class="field">
+                    <label for="fullDescription">Descripción larga</label>
+                    <textarea id="fullDescription" name="fullDescription" style="height:100px"></textarea>
+                </div>
+                
+                <div class="fieldAge">
+                    <div class="field">
+                        <label for="fromAge">Edad Desde</label>
+                        <input type="text" id="fromAge" name="fromAge">
+                    </div>
+                    
+                    <div class="field">
+                        <label id="labelToAge" for="toAge">Edad Hasta</label>
+                        <input type="text" id="toAge" name="toAge">
+                    </div>
+
+                </div>
+
+                <div class="fieldRadio">
+                    <label id="labelAgeYM">Edad Desde y Hasta medida en</label>                
+                    <div class="fieldRadio__inputs">
+                        <input value="Y" type="radio" name="ageYM" id="ageYear" checked>
+                        <label for="ageYear">Años</label>
+                        <input value="M" type="radio" name="ageYM" id="ageMonth">
+                        <label for="ageMonth">Meses</label>
+                    </div>
+                </div>
+
+                <div class="fieldRadio">
+                    <label id="labelEnvio">Envío</label>                
+                    <div class="fieldRadio__inputs">
+                        <input value="0" type="radio" name="freeDelivery" id="payDelivery" checked>
+                        <label for="payDelivery">Con cargo</label>
+                        <input value="1" type="radio" name="freeDelivery" id="freeDelivery">
+                        <label for="freeDelivery">Sin cargo</label>
+                    </div>
+                </div>
+<!--  
+                <div class="fieldImage">
+                    <label for="image">Foto<sup class="required">*</sup></label>
+                    <input type="file" accept="image/*" id="image" name="image">
+                </div>
+-->
+                <div class="field">
+                    <label for="image">Foto<sup class="required">*</sup></label>
+                    <input type="text" id="image" name="image">
+                </div>
+
+                <div class="fieldRadio">
+                    <label id="labelCard">Mostrar en</label>                
+                    <div class="fieldRadio__inputs">
+                        <input value=1 type="radio" name="card" id="cardCard" checked>
+                        <label for="cardCard">Card container</label>
+                        <input value=0 type="radio" name="card" id="cardCarrousel">
+                        <label for="cardCarrousel">Carrousel de ofertas</label>
+                    </div>
+                </div>
+
+<!--  
+            <div class="fieldCheckBox">
+                <input type="checkbox" id="freeDelivery" name="freeDelivery">
+                <label for="freeDelivery">Envío sin cargo</label>
+            </div>
+-->            
+            </div>
+            
+            
+            <div>
+                <p><sup class="required">*</sup>campos obligatorios</p>
+            </div>
+    
+            <div>
+                <!-- 
+                <input class="btn-submit" id="btn-add" type="submit" value="Confirmar">
+                <input class="btn-reset" id="btn-reset" type="reset" value="Resetear"> 
+                -->
+                <button type="button" class="form-product__btn-create btn-submit">Crear</button>
+                <button type="button" class="form-product__btn-update" disabled>Guardar</button>
+                <button type="button" class="form-product__btn-cancel" disabled>Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<p class="section-add__header" id="persistence">Listado de productos</p>
+<section class="section-products-table">
+    <div class="products-table-container"></div>
+</section>

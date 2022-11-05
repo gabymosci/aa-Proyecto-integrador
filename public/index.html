@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Mosci - Proyecto Integrador</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+
+<body>
+    <!-- Botón flotante Whatsapp -->
+    <a href="https://wa.me/543515555555" class="whatsapp-btn" target="_blank"></a>
+
+    <!-- Ventana de errores validación inputs -->
+    <div class="general-errors ok">
+        <img src="img/advertencia.png" alt="Aviso">
+    </div>
+    
+    <!-- Confirmación de Eliminación de producto -->
+    <!--  
+    <dialog class="main-header__delete-modalbox" id="dialogoFormulario">
+        <form class="delete-product" method="dialog">
+            <img src="img/advertencia.png" alt="Aviso">
+            ¿Confirma la ELIMINACION definitiva de este producto?
+            <div class="delete-product__buttons">
+                <button class="btn-submit" type="submit" value="no">No</button>
+                <button class="btn-submit" type="submit" value="si">Si</button>
+            </div>
+        </form>
+    </dialog>
+    -->
+
+    <div class="main-header__delete-modalbox">
+        <div class="delete-product">
+            <img src="img/advertencia.png" alt="Aviso">
+            ¿Confirma la ELIMINACION definitiva de este producto?
+            <div class="delete-product__buttons">
+                <button id="buttonYes" class="btn-submit btn-submit-yes" title="Confirmar eliminación">Si</button>
+                <button id="buttonNo" class="btn-submit btn-submit-no" title="Cancelar eliminación">No</button>
+            </div>
+        </div>
+    </div>
+    <!-- Activación Burger Button -->
+    <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
+    
+    <!-- ================================ Main Header ================================ -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <div class="main-header__logo-container">
+            <img src="img/logo.png" alt="Juguetería Cósmica">
+        </div>
+        
+        <!-- Search Form -->
+        <div class="main-header__search-form-container">
+            <label for="searchSite"></label>
+            <input type="search" id="searchSite" name="searchSite" placeholder="Buscar...">
+            <button class="main-header__search-form-container-button" type="submit"></button>
+        </div>
+        
+        <!--==== Cart ====-->
+        <!-- cart button -->
+        <div class="main-header__cart-button-container">
+            <span class="main-header__cart-button-container-qty" id="cart-qty"></span>
+            <img src="img/i-carrito.png" alt="Carrito">
+        </div>
+        <!-- cart content -->
+        <div class="main-header__cart-modalbox">
+            <div class="main-header__cart-content">
+                <button class="main-header__cart-content-button-close" title="Cerrar"></button>
+                <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
+
+<!--  
+                <div class="main-header__cart-content-products">
+                    <button class="main-header__cart-content-products-delete" title="Eliminar"></button>
+                    <div class="main-header__cart-content-products-image">
+                        <img id="product-image" src="img/j-muneca.jpg" alt="Muñeca llorona">
+                    </div>
+                    <div class="main-header__cart-content-products-description">
+                        <p id="product-description">Muñeca llorona</p>
+                    </div>
+                    <div class="main-header__cart-content-products-price">
+                        <p id="product-price">$17099</p>
+                    </div>
+                    <div class="main-header__cart-content-products-quantity">
+                        x<input id="product-quantity" type="number" min="1" max="99" value="1">
+                    </div>
+                    <div class="main-header__cart-content-products-subtotal">
+                        <p id="product-subtotal">= $17099</p>
+                    </div>
+                </div>
+
+                <div id="main-header__cart-content-footer" class="main-header__cart-content-footer">
+                    <div class="main-header__cart-content-footer-total">Total: $10.220</div>
+                    <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
+                </div>
+-->
+
+            </div>
+        </div>
+        <!-- Burger Button -->
+        <div class="main-header__hamburger-button-container">
+            <label class="hamburger-button" for="main-nav-toggle" title="Alternar la barra de navegación">
+                <span class="hamburger-button__top-bread"></span>
+                <span class="hamburger-button__meat"></span>
+                <span class="hamburger-button__bottom-bread"></span>
+            </label>
+        </div>
+        
+        <!-- Main Nav -->
+        <div class="main-header__main-nav-container">
+            <nav class="main-nav">
+                <ul class="main-nav__list">
+                    <li class="main-nav__item">
+                        <a href="#/inicio" class="main-nav__link">Inicio</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a href="#/alta" class="main-nav__link ">Alta</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a href="#/contacto" class="main-nav__link">Contacto</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a href="#/nosotros" class="main-nav__link">Nosotros</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ================================ Contenido ================================ -->
+    <main></main>
+
+    <!-- ================================= Footer ================================== -->
+    <footer class="main-footer">
+        <p>Seguinos en todas nuestras redes sociales:</p>
+        <div class="main-footer__social">
+            <a href="https://www.instagram.com/" target="_blank"><img src="img/r-instagram.png" alt="instagram" title="instagram"></a>
+            <a href="https://www.twitter.com/" target="_blank"><img src="img/r-twitter.png" alt="twitter" title="twitter"></a>
+            <a href="https://www.facebook.com/" target="_blank"><img src="img/r-facebook.png" alt="facebook" title="facebook"></a>
+            <a href="https://www.youtube.com/" target="_blank"><img src="img/r-youtube.png" alt="youtube" title="youtube"></a>
+        </div>
+        <p>© 2022 Juguetería Cósmica. 📩 Av. Colon 25 - Córdoba - 5000. 📞 (0351) 555-5555. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>    
+    <script src="js/Card.js"></script>
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>

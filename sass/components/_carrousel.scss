@@ -1,0 +1,119 @@
+// ===============================================Cards Footer 
+.section-cards__footer {
+    &-container-article:hover {
+        transform: scale(1.1);
+    }
+    &-container-article-image {
+        img {
+            width: 150px;
+        }
+    }
+    &-container-article-text {
+        padding: 0em 1em;
+        font-weight: bold;
+        background-color: var(--body-footer-bg);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 12px;
+    }
+}
+
+
+.carrousel {
+    position: relative;
+    overflow: hidden;
+    
+    &__container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 1em;
+        margin-bottom: 1em;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #8b89b1;
+
+            &:hover {
+                background-color: #62617d;
+            }
+        }
+
+    }
+
+    &__item {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+
+    &__item-n {
+        box-shadow: var(--box-shadow);
+        width: 150px;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: var(--body-footer-bg);
+        transition: .2s;
+    }
+
+    &__item-n:hover {
+        transform: scale(1.05);
+        transform-origin: top;
+    }
+
+    &__slide {
+        flex: 1 0 100%;
+    }
+
+}
+
+#slide {
+    &-arrow-prev {
+        position: absolute;
+        opacity: .9;
+        left: 10px;
+        top: 100px;
+        border-radius: 50%;
+        border: none;
+        transition: .2s;
+        background-color: var(--section-footer-bg);
+    }
+
+    &-arrow-next {
+        position: absolute;
+        opacity: .59;
+        right: 10px;
+        border-radius: 50%;
+        top: 100px;
+        border: none;
+        transition: .2s;
+        background-color: var(--section-footer-bg);
+    }
+
+    &-arrow-prev:hover,
+    &-arrow-next:hover {
+        cursor: pointer;
+        transform: scale(1.5);
+    }    
+}
+
+
+
+

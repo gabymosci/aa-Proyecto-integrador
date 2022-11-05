@@ -1,0 +1,38 @@
+
+$textAlignValues: ("left", "right", "center", "justify");
+
+@each $textAlign in $textAlignValues {
+    .u-text-align-#{$textAlign} {
+        text-align: #{$textAlign}!important;
+    }
+}
+
+.u-bold {
+    font-weight: bold !important;
+}
+
+.u-italic {
+    font-style: italic !important;
+}
+
+.u-underline {
+    text-decoration: underline !important;
+}
+
+
+// .u-text-align-left {
+//     text-align: left !important;
+// }
+
+// .u-text-align-right {
+//     text-align: right !important;
+// }
+
+// .u-text-align-center {
+//     text-align: center !important;
+// }
+
+// .u-text-align-justify {
+//     text-align: justify !important;
+// }
+

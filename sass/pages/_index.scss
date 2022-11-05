@@ -1,0 +1,321 @@
+// ===============================================Section
+.section {
+    &-cards,
+    &-contact,
+    &-add,
+    &-own {
+        &__header {
+            padding: 0 2em;
+            color: white;
+        }
+
+        &__footer {
+            background-color: var(--section-footer-bg);
+            border-radius: 5px;
+            padding: .7em 2em;
+            margin-top: 1em;
+            color: var(--section-footer);
+            box-shadow: var(--box-shadow);
+        }
+    }
+}
+
+// ===============================================Main Footer
+.main-footer {
+    background-color: var(--body-footer-bg);
+    border-radius: 5px;
+    color: var(--body-footer);
+    padding: .7em 2em;
+    margin-top: 5em;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    font-size: small;
+    transition: .2s;
+
+    & a img {
+        padding: 0 .5em;
+    }
+
+    & a img:hover {
+        transform: scale(1.1);
+    }
+}
+
+// ===============================================Form Add
+.add-container__fields {
+    display: grid;
+    // border: 1px solid green;
+    
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+// ===============================================Inputs
+.field  {
+    // border: 1px solid red;
+    & input, textarea {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        // margin-bottom: 16px;
+        resize: vertical;
+        box-shadow: var(--box-shadow);
+    }
+    
+    & input:focus,
+    & textarea:focus {
+        background-color: var(--link-hover-bg);
+        outline: none;
+    }
+}
+
+.fieldAge {
+    // border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#fromAge {
+    // border: 2px solid yellow;
+    width: 80%;
+}
+
+#toAge {
+    // border: 2px solid yellow;
+    width: 80%;
+    margin-left: 20%;
+}
+
+#labelToAge {
+    // border: 1px solid magenta;
+    margin-left: 20%;
+}
+
+#labelAgeYM,
+#labelCard,
+#labelEnvio {
+    display: block;
+    margin-bottom: 6px;
+    background-color: var(--section-bg);
+}
+
+.fieldRadio__inputs {
+    // border: 1px solid green;
+    background-color: white;
+    padding: 8px 0px 8px 12px;
+    box-shadow: var(--box-shadow);
+    border-radius: 4px;
+
+    & label {
+        margin-right: 20px;
+    }
+
+}
+
+/*
+.fieldImage {
+    // border: 1px solid green;
+    & input {
+        width: 100%;
+        margin-top: 6px;
+        padding: 9px 10px;
+        border-radius: 4px;
+        background-color: white;
+        border: none;
+        box-shadow: var(--box-shadow);
+    }
+
+    & input:focus {
+        background-color: var(--link-hover-bg);
+        outline: none;
+    }
+}
+*/
+
+.fieldCheckBox  {
+    margin: 40px 15px 30px 0px;
+}
+
+// ---Bordes rojo y verde para estado de validación
+.fieldBorderRed {
+    border: 1px solid red !important;
+    background-color: rgba(247, 207, 207, .3) !important;
+}
+
+.fieldBorderGreen {
+    border: 1px solid green !important;
+}
+
+// ===============================================Buttons
+.form-product {
+    &__btn-create,
+    &__btn-update,
+    &__btn-cancel {
+        padding: 12px 20px;
+        background-color: var(--btn-bg);
+        color: var(--btn-text);
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        transition: .2s;
+        margin-right: 1em;
+    }
+
+    &__btn-create:hover:not(:disabled),
+    &__btn-update:hover:not(:disabled),
+    &__btn-cancel:hover:not(:disabled) {
+        background-color: var(--btn-hover);
+        box-shadow: 2px 2px var(--btn-shadow);
+        transform: scale(1.1);
+    }
+
+    &__btn-create:active,
+    &__btn-update:active,
+    &__btn-cancel:active {
+        background-color: var(--btn-active);
+        color: var(--btn-active-text);
+    }
+
+    &__btn-create:disabled,
+    &__btn-update:disabled,
+    &__btn-cancel:disabled {
+        background-color: gray;
+        color: white;
+        cursor: auto;
+    }
+}
+.btn {
+    &-submit {
+        padding: 12px 20px;
+        background-color: var(--btn-bg);
+        color: var(--btn-text);
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        transition: .2s;
+        margin-right: 1em;
+    }
+    
+    &-submit:hover {
+        background-color: var(--btn-hover);
+        box-shadow: 2px 2px var(--btn-shadow);
+        transform: scale(1.1);
+    }
+    
+    &-submit:active {
+        background-color: var(--btn-active);
+        color: var(--btn-active-text);
+    }
+}
+    
+// ===============================================General Errors
+.general-errors {
+    display: flex;
+    position: fixed;
+    margin-top: 100px;
+    background-color: white;
+    color: red;
+    box-shadow: var(--box-shadow);
+    border-radius: 3px;
+    padding: .2em .7em ;
+    z-index: 1;
+    text-shadow: 1px 1px 1px rgba(248, 26, 26, 0.5);
+    line-height: 30px;
+    font-size: 16px;
+    transition: .4s;
+
+    img {
+        height: 25px;
+        padding: 3px 10px 0px 0px;
+    }
+
+}
+
+.triangle {
+    position: absolute;
+    top: 36px;
+    left: 11px;
+    width: 0px;
+    border: 11px solid white;
+    border-bottom: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+
+
+.ok {
+    display:none;
+}
+
+// ===============================================Whatsapp Button
+.whatsapp-btn {
+    background-image: url('../img/r-whatsapp.png');
+    position: fixed;
+    display: inline-block;
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    height: 48px;
+    width: 48px;
+    bottom: 40px;
+    right: 20px;
+    transition: .2s;
+    z-index: 100;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+// ===============================================Confirmación de eliminación
+.delete-product {
+    background-color: rgba(198, 215, 225, .95);
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+    position: absolute;
+    padding: 10px;
+    width: 510px;
+    height: 110px;
+    color: var(--text-color);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    img {
+        position: relative;
+        top: 6px;
+        left: 5px;
+        margin-right: 5px;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+        
+        & button {
+            width: 60px;
+        }
+    }
+}
+// ===============================================Varios
+.required {
+    color: red;
+}
+
+.offer {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+

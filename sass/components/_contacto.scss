@@ -1,0 +1,11 @@
+.contact-container {
+    background-color: var(--section-bg);
+    border-radius: 5px;
+    padding: 1em 3em;
+    box-shadow: var(--box-shadow);
+
+    & .field {
+        margin-bottom: 1em;
+    }
+}
+

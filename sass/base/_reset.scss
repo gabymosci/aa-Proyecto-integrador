@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Ms+Madi&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+
+/*
+Efecto vidrio
+Uno:
+backdrop-filter: blur(3px);
+-webkit-backdrop-filter: blur(3px);
+
+Otro:
+background-color: rgba(198, 215, 225, .7);
+backdrop-filter: blur(14px);
+
+*/
+
+// ---Definición de colores
+
+:root {
+    --text-color: hsl(218, 86%, 30%);
+    --body-bg: hsl(203, 31%, 95%);
+    
+    --header-bg: rgba(198, 215, 225, .9);
+    --header-bg-linear: linear-gradient(180deg, rgba(91, 144, 175,.9) 0%, rgba(190, 220, 240,.9) 89%);
+    --cart-container-bg: #CAF0F8;
+
+    --body-footer: hsl(218, 86%, 40%);
+    --body-footer-bg: rgb(198, 215, 225);
+
+    --link-hover-bg: hsl(210, 43%, 89%);
+    --link-hover-border: hsl(195, 53%, 79%);
+    --link-active: hsl(195, 53%, 85%);
+    --link-active-text: hsl(218, 86%, 56%);
+
+    --section-bg : hsl(202, 31%, 93%);
+    --section-border: hsl(200, 4%, 86%);
+
+    --section-footer-bg: #CAF0F8;
+    --section-footer: hsl(218, 86%, 40%);
+
+    --input-border: hsl(0, 0%, 80%);
+
+    --btn-bg: hsl(216, 90%, 44%);
+    --btn-text: white;
+    --btn-hover: hsl(216, 90%, 54%);
+    --btn-active: hsl(216, 90%, 44%);
+    --btn-active-text: hsl(218, 86%, 86%);
+    --btn-shadow: hsl(0, 0%, 51%);
+
+    --box-shadow:
+        0 1px 5px rgba(0, 0, 0, .2),
+        0 0px 3px rgba(0, 0, 0, .4);
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--body-bg);
+    padding-bottom: 1.1em;
+
+    background-image: url('../img/fondo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    @media (min-width: 1024px) {
+            max-width: 1440px;
+            margin: auto;
+        }
+}
+
+main {
+    margin-top: 80px;
+}
+

@@ -1,0 +1,85 @@
+// ===============================================Contenedor
+.cards-container {
+    background-color: var(--section-bg);
+    border-radius: 5px;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    font-size: 12px;
+}
+
+// -----------------------------------------------Cada cart
+.card {
+    background-color: var(--body-footer-bg);
+    position: relative;
+    width: 200px;
+    height: 400px;
+    max-width: 250px;
+    flex-grow: 1;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px 5px 0 0;
+    transition: .2s;
+
+    &__image {
+        width: 100%;
+        padding: .2em;
+        border-radius: 10px;
+    }
+
+    &__content {
+        bottom: 45px;
+        padding: 0 .7em;
+    }
+
+    &__heading {
+        margin-top: -5px;
+    }
+
+    &__description p {
+        padding: 0;
+        margin-top: -15px;
+        overflow: hidden;
+    }
+
+    &__price {
+        position: absolute;
+        bottom: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    &__link-add {
+        background-color: var(--btn-active);
+        position: absolute;
+        top: 365px;
+        left: 15px;
+        padding: .4em;
+        text-decoration: none;
+        color: white;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: .2s;
+    }
+
+    &__link-add:hover {
+        background-color: var(--btn-hover);
+        box-shadow: 2px 2px #818181;
+        transform: scale(1.1);
+    }
+
+    &__link-add:active {
+        background-color: var(--btn-active);
+        color: hsl(218, 86%, 86%);
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        transform-origin: bottom;
+    }
+    
+}
+

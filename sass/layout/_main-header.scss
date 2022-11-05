@@ -1,0 +1,173 @@
+.main-header {
+    background: var(--header-bg-linear);
+    box-shadow: var(--box-shadow);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    position: fixed;
+    top: 0;
+    width:100%;
+    z-index: 1;
+    padding: .2em;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        position: relative;
+    }
+
+    @media (min-width: 1024px) {
+        max-width: 1440px;
+    }
+
+    /* *******************************************************************
+    *                                Logo                                *
+    ******************************************************************* */
+
+    &__logo-container {
+        margin: .2em 1em 0 1em;
+        display: none;
+
+        img {
+            width: 60px;
+            border-radius: 5px;
+        }
+
+        @media (min-width: 495px) {
+            display: block;
+        }
+    }
+
+    /* ******************************************************************
+    *                            Search Form                            *
+    ****************************************************************** */
+    
+    &__search-form-container {
+        display: flex;
+        flex-grow: 1;
+        border-radius: 4px;
+        
+        @media (min-width: 768px) {
+            box-shadow: var(--box-shadow);
+        }
+
+        input {
+            border: none;
+            border-radius: 4px 0 0 4px ;
+            padding: 0 10px;
+            font-size: 16px;
+        }
+
+        input:focus,
+        input:hover {
+            background-color: var(--link-hover-bg);
+            outline: none;
+        }
+
+        &-button {
+            background-image: url('../img/i-lupa.png');
+            background-position: 5px 4px; 
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 0 4px 4PX 0;
+            cursor: pointer;
+            border: none;
+            transition: .2s;
+        }
+
+        &-button:focus,
+        &-button:hover {
+            background-color: var(--link-hover-bg);
+            outline: none;
+        }
+        @media (min-width: 768px) {
+            order: 2;
+            flex-basis: 14em;
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+    }
+    
+    /* ******************************************************************
+    *                            Cart Button                            *
+    ****************************************************************** */
+
+    &__cart-button-container {
+        position: relative;
+        padding: .8em 1em .5em .5em !important;
+        cursor: pointer;
+        transition: .2s;
+
+        &:focus,
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        img {
+            width: 30px;
+        }
+
+        &-qty {
+            display: none;
+            position: absolute;
+            background: red;
+            color: white;
+            top: 2px;
+            left: 55%;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        @media (min-width: 768px) {
+            order: 3;
+            padding: 1em .7em;
+        }
+    }
+    
+    /* *******************************************************************
+    *                            Cart Content                            *
+    ******************************************************************* */
+
+    // Está en cart-content.scss
+
+    /* *******************************************************************
+    *                          Hamburger Button                          *
+    ******************************************************************* */
+
+    &__hamburger-button-container {
+        border-radius: 5px;
+        padding: .5em;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+    
+    /* *******************************************************************
+    *                              Main Nav                              *
+    ******************************************************************* */
+
+    &__main-nav-container {
+        flex-basis: 100%;
+        display: none;
+        flex-grow: 1;
+        
+        @media (min-width: 768px) {
+            flex-basis: auto;
+            order: 1;
+            display: block;
+        }
+    }
+
+}
+

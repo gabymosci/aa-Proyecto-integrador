@@ -1,0 +1,79 @@
+.add-container {
+    background-color: var(--section-bg);
+    border-radius: 5px;
+    padding: 1em 3em;
+    box-shadow: var(--box-shadow);
+    border: 2px solid green;
+}
+
+.section-products-table {
+    background-color: var(--section-bg);
+    border-radius: 5px;
+    padding: 2em 3em;
+    box-shadow: var(--box-shadow);
+    margin-top: 1em;
+}
+
+.table-products {
+    border-collapse: collapse;
+
+    & thead,
+    & tfoot {
+        background-color: hsl(203, 92%, 19%);
+        background-color: var(--text-color);
+        color: hsl(203, 92%, 95%);
+        padding: .5em;
+        font-weight: bold;
+    }
+
+    & td,
+    & th {
+        border: 1px solid hsl(203, 92%, 19%);
+        padding: .5em;
+    }
+
+    & tbody tr:nth-child(even) {
+        background-color: hsl(203, 92%, 91%);
+    }
+
+    & tbody tr:nth-child(odd) {
+        background-color: hsl(203, 92%, 97%);
+    }
+
+}
+.editRow {
+    background-color: green !important;
+    color: white;
+}
+
+.deleteRow {
+    background-color: red !important;
+    color: white;
+}
+
+.btn-edit,
+.btn-delete {
+    transition: .2s;
+
+    &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    }
+}
+
+.main-header {
+    &__delete-modalbox {
+        display: none;  
+        // display: flex;  //*** sólo para desarrollo ***
+        position: fixed;
+        z-index: 2; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0,0.5); 
+        justify-content: center;
+
+    }
+}
