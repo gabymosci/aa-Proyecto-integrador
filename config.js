@@ -4,6 +4,12 @@ const PERSISTENCE_TYPE = {
     TYPE_MONGODB: 'MONGODB',
 };
 
+/*
+clave de stripe para realizar el pago
+sk_test_51M17KXDKMRiRpfMLZMVN7lC0fxYR2creNeaUVwYs1LYLT8U6sWIEpQDuwSy2TEX9ILkS3VaByXCMPW0TntUlL4qg007CqLX9Dv
+*/
+
+
 const config = {
     PORT: 8080,
     PERSISTENCE_TYPE: PERSISTENCE_TYPE.TYPE_MONGODB,    // 'MEM', 'FILE', 'MONGODB'

@@ -2,7 +2,6 @@
   "engines": {
     "node": "16.1"
   },
-
   "type": "module",
   "name": "proyecto-en-capas",
   "version": "1.0.0",
@@ -17,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "mongoose": "^6.6.2"
+    "mongoose": "^6.6.2",
+    "stripe": "^10.16.0"
   }
 }
