@@ -9232,7 +9232,6 @@ main {
   border-radius: 5px;
   padding: 1em 3em;
   box-shadow: var(--box-shadow);
-  border: 2px solid green;
 }
 
 .section-products-table {
