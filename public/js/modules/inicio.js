@@ -42,7 +42,7 @@ class PageInicio {
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
 
-        // console.log(`Se encontraron ${products.length} productos.`);
+        console.log(`Se encontraron ${products.length} productos.`);
     }
 }
 
@@ -55,6 +55,7 @@ function programCart () {
             e.preventDefault();
             let product = e.target.parentNode;
             // Producto a Agregar
+            const productId  = product.querySelector('.card_id').innerHTML;
             const productImg = product.querySelector('.card__article img').src;
             const productDes = product.querySelector('.card__article h2').innerHTML;
             const productPri = product.querySelector('.card__article span').innerHTML;
@@ -87,6 +88,7 @@ function programCart () {
             let newProduct = 
             `
             <button class="main-header__cart-content-products-delete" title="Eliminar"></button>
+            <span class="card_id" hidden>${productId}</span>
             <div class="main-header__cart-content-products-image">
                 <img id="product-image" src="${productImg}" alt="${productDes}">
             </div>
@@ -102,7 +104,7 @@ function programCart () {
             <div class="main-header__cart-content-products-subtotal">
                 <p id="product-subtotal">= $${subTotal}</p>
             </div>
-                    `;
+            `;
         
             newDiv = document.createElement('div');
             newDiv.innerHTML = newProduct;
@@ -144,7 +146,8 @@ function programCart () {
     });
 }
 
-function refreshCartContent () {
+async function refreshCartContent () {
+    const productId         = document.querySelectorAll('.card_id')
     const prices            = document.querySelectorAll('#product-price');
     const quanty            = document.querySelectorAll('#product-quantity');
     const subtot            = document.querySelectorAll('#product-subtotal');
@@ -152,12 +155,17 @@ function refreshCartContent () {
     const productContainer  = document.querySelectorAll('.main-header__cart-content-products');
     const cartContainer     = document.querySelector('.main-header__cart-content');
     let deleteDiv           = document.getElementById('main-header__cart-content-footer');
+    let productRead ;
     let cartQty = 0;
     let subTotal;
     let total = 0;
+    let price =0;
     // Calcula Total
     for (let i=0; i<prices.length; i++) {
-        subTotal = parseFloat(Number(prices[i].innerHTML.split('$')[1]) * Number(quanty[i].value));
+        // Lee el precio del servidor por si se manipulan los datos en el front
+        productRead = await productController.getProduct(productId[i].innerHTML);
+        price= productRead.price;
+        subTotal = price * Number(quanty[i].value);
         subtot[i].innerHTML = `= $${subTotal}`;
         total += subTotal;
         cartQty += Number(quanty[i].value);
@@ -192,6 +200,8 @@ function refreshCartContent () {
         cartRedQty.style.display = 'none';
         if (cartContentVisible()) { toggleCart(); }
     }
+
+    return total;
 }
 
 function programCarrousel () {
@@ -244,4 +254,4 @@ function programCarrousel () {
 
 }
 
-export default PageInicio;
+export {refreshCartContent, PageInicio as default };
