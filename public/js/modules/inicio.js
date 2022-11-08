@@ -3,7 +3,7 @@ import {toggleCart, cartContentVisible} from '../main.js';
 
 class PageInicio {
 
-    static async renderTemplateCards(products) {
+    static async renderTemplateCards(products) { 
         const textToRender = await fetch('/templates/card.hbs').then(r =>r.text());
         const template = Handlebars.compile(textToRender);
         const html = template({ products });
@@ -18,6 +18,10 @@ class PageInicio {
     }
 
     static async renderTemplateCarrousel(products) {
+        if (!products.length) {
+            document.getElementById('offert').innerHTML = 'No se encontraron productos';
+            return;
+        }
         const textToRender = await fetch('/templates/carrousel.hbs').then(r =>r.text());
         const template = Handlebars.compile(textToRender);
         let resultText = '';
@@ -253,5 +257,6 @@ function programCarrousel () {
     }, 8000); //8000
 
 }
+
 
 export {refreshCartContent, PageInicio as default };
