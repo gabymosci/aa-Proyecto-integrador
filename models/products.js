@@ -6,7 +6,7 @@ import ProductModelMongoDB from "./products-mongodb.js";
 
 class ProductModel {
     static get(type) {
-        console.log(`##### Persistencia -> ${config.PERSISTENCE_TYPE || 'por defecto'} #####`);
+        console.log(`##### Persistencia products-> ${config.PERSISTENCE_TYPE || 'por defecto'} #####`);
         switch (type) {
             case PERSISTENCE_TYPE.TYPE_MEM: 
                 return new ProductModelMem();

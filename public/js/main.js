@@ -160,7 +160,7 @@ const programCartContent = () => {
 //                   Función validadora de inputs                   //
 //////////////////////////////////////////////////////////////////////
 function validateInput(label, field, regExpText, minLen, maxLen, required, customMessage) {
-    const _buttonSubmit = document.querySelector('.btn-submit');
+    const _buttonSubmit = document.querySelector('.form-product__btn-create');
     let value = field.value.trim();
     let message ='';
     let messGral = 'no se ajusta al formato';

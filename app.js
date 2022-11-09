@@ -1,5 +1,6 @@
 import express from 'express';
 import routerProducts from './routers/products.js';
+import routerProductsCart from './routers/productscart.js';
 // import ProductModelMongoDB from './models/products-mongodb.js';
 import config from './config.js';
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 
 app.use('/api/products', routerProducts);
+app.use('/api/productscart', routerProductsCart);
 
 
 const PORT = config.PORT;
