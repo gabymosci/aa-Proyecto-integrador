@@ -1,6 +1,8 @@
 import {validateInput} from '../main.js';
 import productController from '/js/controllers/product.js';
 
+console.warn('🆗: Módulo PageAlta cargado.');
+
 const _generalErrors = document.querySelector('.general-errors');
 
 class PageAlta {
@@ -298,6 +300,8 @@ class PageAlta {
 
 
     static async init() {
+        console.log('PageAlta.init()');
+
         PageAlta.prepareTable();
         PageAlta.prepareForm();
         programInputsAdd();

@@ -2,6 +2,18 @@ import productController from '/js/controllers/product.js';
 import productCartController from '/js/controllers/productcart.js';
 import {toggleCart, cartContentVisible} from '../main.js';
 
+console.warn('🆗: Módulo PageInicio cargado.');
+
+// Borra todos los productos que pudieran estar en el cart content del servidor
+async function initializeProductsCart() {
+    const productsCart = await productCartController.getProductsCart({});
+    for (let productCart of productsCart) {
+        await productCartController.deleteProductCart(productCart.id);;
+    }
+}
+
+initializeProductsCart();
+
 class PageInicio {
 
     static async renderTemplateCards(products) { 
@@ -43,9 +55,13 @@ class PageInicio {
     }
 
     static async init() {
+        console.log('PageInicio.init()');
+
         const products = await productController.getProducts();
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
+
+
 
         console.log(`Se encontraron ${products.length} productos.`);
     }
@@ -221,6 +237,8 @@ async function buyOperation () {
     const productCartToSave = {};
     const productId         = document.querySelectorAll('.main-header__cart-content .card_id')
     const quanty            = document.querySelectorAll('#product-quantity');
+    const cartModalBox      = document.querySelector('.main-header__cart-modalbox');
+    const cartContent       = document.querySelector('.main-header__cart-content')
     let productRead;
     let productCartSaved;
     for (let i=0 ; i<productId.length ; i++) {
@@ -232,7 +250,17 @@ async function buyOperation () {
         productCartToSave.partial = productRead.price * Number(quanty[i].value);
         productCartSaved = await productCartController.saveProductCart(productCartToSave);
     }
-
+    // Vacía cart container
+    cartContent.innerHTML= 
+    `
+    <button class="main-header__cart-content-button-close" title="Cerrar"></button>
+    <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
+    </div>
+    `
+    // si se puede hacer andar el pago debería limpiar el cart content del servidor para no volver a procesarlo
+    // initializeProductsCart();
+    refreshCartContent();
+    toggleCart();
 }
 
 

@@ -116,7 +116,6 @@ main.start();
 const cartBtn           = document.querySelector('.main-header__cart-button-container');
 const cartContent       = document.querySelector('.main-header__cart-content');
 const cartModalBox      = document.querySelector('.main-header__cart-modalbox');
-// const buyButton         = document.querySelector('.main-header__cart-content-btn-buy');
 const _generalErrors    = document.querySelector('.general-errors');
 let cartContentVisible  = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 

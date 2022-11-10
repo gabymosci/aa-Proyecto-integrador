@@ -1,7 +1,11 @@
 import {validateInput} from '../main.js';
 
+console.warn('🆗: Módulo PageContacto cargado.');
+
 class PageContacto {
     static async init() {
+        console.log('PageContacto.init()');
+        
         programInputsContact();
         programFormContact();
     }
