@@ -12,6 +12,9 @@ class Http {
     /* POST */
     async post(url, dato) {
         try {
+            if (url ==='/api/productscart/') {
+                console.warn('POST:',url,dato);
+            }
             return await fetch(url, {
                 method: 'post',
                 body: JSON.stringify(dato),

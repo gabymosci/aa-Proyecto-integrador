@@ -1,4 +1,5 @@
 import productController from '/js/controllers/product.js';
+import productCartController from '/js/controllers/productcart.js';
 import {toggleCart, cartContentVisible} from '../main.js';
 
 class PageInicio {
@@ -120,7 +121,7 @@ function programCart () {
             document.getElementById('cart-title').insertAdjacentElement('afterEnd',newDiv);
         
             refreshCartContent();
-            if (!cartContentVisible()) { toggleCart(true); }
+            if (!cartContentVisible()) { toggleCart(true)}; 
         
             // Botón eliminar producto del carrito
             const buttonDel = document.querySelector('.main-header__cart-content-products-delete');
@@ -198,6 +199,11 @@ async function refreshCartContent () {
         newDiv.classList.add('main-header__cart-content-footer');
         newDiv.id = 'main-header__cart-content-footer';
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
+        // ---Botón comprar
+        const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
+        buyButton.addEventListener('click', () => {
+            buyOperation()
+        })
     } else {
         if (deleteDiv) { deleteDiv.remove(); }
         cartRedQty.innerHTML = '';
@@ -207,6 +213,28 @@ async function refreshCartContent () {
 
     return total;
 }
+
+/////////////////////////////////////////////////////////////////////
+//                          Botón Comprar                          //
+/////////////////////////////////////////////////////////////////////
+async function buyOperation () {
+    const productCartToSave = {};
+    const productId         = document.querySelectorAll('.main-header__cart-content .card_id')
+    const quanty            = document.querySelectorAll('#product-quantity');
+    let productRead;
+    let productCartSaved;
+    for (let i=0 ; i<productId.length ; i++) {
+        productRead = await productController.getProduct(productId[i].innerHTML);
+        productCartToSave.productId = productId[i].innerHTML;
+        productCartToSave.name = productRead.name;
+        productCartToSave.price = productRead.price;
+        productCartToSave.qty = Number(quanty[i].value);
+        productCartToSave.partial = productRead.price * Number(quanty[i].value);
+        productCartSaved = await productCartController.saveProductCart(productCartToSave);
+    }
+
+}
+
 
 function programCarrousel () {
     // ========================================Definición de variables
