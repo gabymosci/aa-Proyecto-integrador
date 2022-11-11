@@ -61,8 +61,6 @@ class PageInicio {
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
 
-
-
         console.log(`Se encontraron ${products.length} productos.`);
     }
 }
@@ -167,6 +165,9 @@ function programCart () {
     });
 }
 
+//////////////////////////////////////////////////////////////////////
+//                       Refresh cart content                       //
+//////////////////////////////////////////////////////////////////////
 async function refreshCartContent () {
     const productId         = document.querySelectorAll('.card_id')
     const prices            = document.querySelectorAll('#product-price');
@@ -257,8 +258,14 @@ async function buyOperation () {
     <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
     </div>
     `
-    // si se puede hacer andar el pago debería limpiar el cart content del servidor para no volver a procesarlo
-    // initializeProductsCart();
+
+    TODO: 'acá función pagar';
+
+    // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
+    // se volverían a procesar los anteriores. Al refrescar - recargar la página también se borra.
+
+    // initializeProductsCart(); // Deshabilitado para desarrollo
+
     refreshCartContent();
     toggleCart();
 }

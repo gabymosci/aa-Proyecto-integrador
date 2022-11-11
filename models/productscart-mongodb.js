@@ -26,7 +26,9 @@ class ProductCartModelMongoDB {
             const newProductCart = new ProductsCartModel(productCart);
             await newProductCart.save();
             const productAddedToCart = DBMongoDB.getObjectWithId(newProductCart.toObject());
-            console.log('*********** Producto comprado ***********\n', productAddedToCart)
+
+            console.log('--------- Producto comprado ' + new Date().toLocaleString() + '---------\n', productAddedToCart);
+            
             return productAddedToCart;
         } catch (error) {
             console.error('Error al intentar dar de alta el producto:', error.message);

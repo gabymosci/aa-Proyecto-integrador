@@ -11,7 +11,9 @@ class ProductCartModelMem {
     async createProductCart (productCart) {
         productCart.id = String(++this.lastProductCartId);
         this.productsCart.push(productCart);
-        console.log('*********** Producto comprado ***********\n', productCart)
+
+        console.log('--------- Producto comprado ' + new Date().toLocaleString() + '---------\n', productAddedToCart);
+        
         return productCart;
     }
 
