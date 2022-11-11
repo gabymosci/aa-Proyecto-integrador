@@ -9232,14 +9232,22 @@ main {
   border-radius: 5px;
   padding: 1em 3em;
   box-shadow: var(--box-shadow);
+  margin-bottom: 1em;
+}
+
+.show-all-products {
+  display: flex;
+  justify-content: center;
 }
 
 .section-products-table {
+  display: none;
   background-color: var(--section-bg);
   border-radius: 5px;
   padding: 2em 3em;
   box-shadow: var(--box-shadow);
   margin-top: 1em;
+  justify-content: center;
 }
 
 .table-products {

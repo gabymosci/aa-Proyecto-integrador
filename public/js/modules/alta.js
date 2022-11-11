@@ -8,6 +8,7 @@ const _generalErrors = document.querySelector('.general-errors');
 class PageAlta {
 
     static productsTableContainer;
+    static buttonToggleTable;
     static productForm;
     static fields;
     static btnCreate;
@@ -15,6 +16,25 @@ class PageAlta {
     static btnCancel;
     static idProduct;
     static rowEdit;
+
+    static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
+
+    static async toggleTable () {
+        if (!this.tableVisible()) {
+            document.querySelector('.section-products-table').style.display = 'flex';
+            PageAlta.btnUpdate.hidden = false;
+            PageAlta.btnCancel.hidden = false;
+            await PageAlta.loadTable();
+            PageAlta.buttonToggleTable.innerHTML = 'Ocultar todos los productos'
+            PageAlta.emptyForm();
+    } else {
+            document.querySelector('.section-products-table').style.display = 'none';
+            PageAlta.btnUpdate.hidden = true;
+            PageAlta.btnCancel.hidden = true;
+            PageAlta.buttonToggleTable.innerHTML = 'Mostrar todos los productos'
+            PageAlta.emptyForm();
+        }
+    }
 
     static async saveProduct(product) {
         const savedProduct = await productController.saveProduct(product);
@@ -47,6 +67,7 @@ class PageAlta {
                 await clickListenerPromise
                 document.querySelector('.main-header__delete-modalbox').style.display = 'none';;
                 const deletedProduct = await productController.deleteProduct(id);
+                console.log('deletedProduct:', deletedProduct);
                 PageAlta.loadTable();
                 return deletedProduct;
             }
@@ -130,19 +151,6 @@ class PageAlta {
 
     static async addTableEvents() {
         PageAlta.productsTableContainer.addEventListener('click', async e => {
-            // ---Botón Eliminar
-            if (e.target.classList.contains('btn-delete')) {
-                PageAlta.rowEdit = e.target.closest('tr');
-                PageAlta.rowEdit.classList.add('deleteRow');
-                PageAlta.emptyForm();
-                PageAlta.prepareFormForCreating();
-                const deletedProduct = await PageAlta.deleteProduct(e);
-                console.log('deletedProduct:', deletedProduct);
-                if (deletedProduct && PageAlta.objectIsEmpty(deletedProduct)) {
-                    console.error('No se pudo eliminar el producto');
-                }
-                return;
-            }
             // ---Botón Editar
             if (e.target.classList.contains('btn-edit')) {
                 PageAlta.rowEdit = e.target.closest('tr');
@@ -152,7 +160,25 @@ class PageAlta {
                 PageAlta.completeForm(e);
                 return;
             }
+
+            // ---Botón Eliminar
+            if (e.target.classList.contains('btn-delete')) {
+                PageAlta.rowEdit = e.target.closest('tr');
+                PageAlta.rowEdit.classList.add('deleteRow');
+                PageAlta.emptyForm();
+                PageAlta.prepareFormForCreating();
+                const deletedProduct = await PageAlta.deleteProduct(e);
+                // console.log('deletedProduct:', deletedProduct);
+                if (deletedProduct && PageAlta.objectIsEmpty(deletedProduct)) {
+                    console.error('No se pudo eliminar el producto');
+                }
+                return;
+            }
         });
+
+        PageAlta.buttonToggleTable.addEventListener('click', () => {
+            this.toggleTable();
+        })
     }
 
     static async renderTemplateTable(products) {
@@ -170,7 +196,8 @@ class PageAlta {
 
     static async prepareTable() {
         PageAlta.productsTableContainer = document.querySelector('.products-table-container');
-        await PageAlta.loadTable();
+        PageAlta.buttonToggleTable      = document.querySelector('#show-all-products');
+        // await PageAlta.loadTable();
         PageAlta.addTableEvents();
     }
 
@@ -237,7 +264,7 @@ class PageAlta {
     }
 
     static async addFormEvents() {
-        // ---Función Crear producto
+        // ---Botón Crear
         PageAlta.btnCreate.addEventListener('click', async e => {
             console.error('btn-create');
             const productToSave = PageAlta.validateForm();
@@ -256,7 +283,8 @@ class PageAlta {
                 PageAlta.prepareFormForCreating();
             }
         });
-        // ---Función Editar producto
+
+        // ---Botón Guardar
         PageAlta.btnUpdate.addEventListener('click', async e => {
             console.error('btn-update');
             const productToSave = PageAlta.validateForm();
@@ -275,14 +303,13 @@ class PageAlta {
                 PageAlta.prepareFormForCreating();
             }
         });
-        // ---Cancelar
+
+        // ---Botón Cancelar
         PageAlta.btnCancel.addEventListener('click', e => {
             console.error('btn-cancel');
-
             PageAlta.emptyForm();
             PageAlta.prepareFormForCreating();
         });
-
     }
 
     static objectIsEmpty(object) {

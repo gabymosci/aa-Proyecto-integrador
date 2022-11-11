@@ -114,14 +114,18 @@
                 <input class="btn-reset" id="btn-reset" type="reset" value="Resetear"> 
                 -->
                 <button type="button" class="form-product__btn-create btn-submit btn-validator">Crear</button>
-                <button type="button" class="form-product__btn-update btn-validator" disabled>Guardar</button>
-                <button type="button" class="form-product__btn-cancel" disabled>Cancelar</button>
+                <button type="button" class="form-product__btn-update btn-validator" disabled hidden>Guardar</button>
+                <button type="button" class="form-product__btn-cancel" disabled hidden>Cancelar</button>
             </div>
         </form>
     </div>
 </section>
 
-<p class="section-add__header" id="persistence">Listado de productos</p>
+<div class="show-all-products">
+    <button id="show-all-products" type="button" class="btn-submit">Mostrar todos los productos</button>
+</div>
+
+<!-- <p class="section-add__header" id="persistence">Listado de productos</p> -->
 <section class="section-products-table">
     <div class="products-table-container"></div>
 </section>

@@ -264,7 +264,7 @@ async function buyOperation () {
     // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
     // se volverían a procesar los anteriores. Al refrescar - recargar la página también se borra.
 
-    // initializeProductsCart(); // Deshabilitado para desarrollo
+    // initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
 
     refreshCartContent();
     toggleCart();
