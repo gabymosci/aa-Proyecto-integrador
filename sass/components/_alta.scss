@@ -13,7 +13,6 @@
 
 .section-products-table {
     display: none;
-    // display: flex; //**Sólo para desarrollo
     background-color: var(--section-bg);
     border-radius: 5px;
     padding: 2em 3em;
@@ -25,22 +24,43 @@
 
 .table-products {
     border-collapse: collapse;
+    width: 100%;
+    margin-bottom: .5em;
 
-    & thead,
-    & tfoot {
-        background-color: hsl(203, 92%, 19%);
+    &__id,
+    &__name,
+    &__description,
+    &__price,
+    &__actions {
         background-color: var(--text-color);
         color: hsl(203, 92%, 95%);
         padding: .5em;
-        font-weight: bold;
     }
 
     & td,
     & th {
-        border: 1px solid hsl(203, 92%, 19%);
+        border: 1px solid hsl(203, 92%, 19%) !important;
         padding: .5em;
+        word-wrap: break-word;
     }
 
+    // &__id {
+    //     width: 10em !important;
+    // }
+    // &__name {
+    //     width: 20em !important;
+    // }
+    // &__description {
+    //     width: 50em !important;
+    // }
+    // &__price {
+    //     width: 10em !important;
+    // }
+    // &__actions {
+    //     width: 8em !important;
+    // }
+
+        
     & tbody tr:nth-child(even) {
         background-color: hsl(203, 92%, 91%);
     }
@@ -48,8 +68,15 @@
     & tbody tr:nth-child(odd) {
         background-color: hsl(203, 92%, 97%);
     }
-
 }
+
+tfoot {
+    background-color: var(--text-color);
+    color: hsl(203, 92%, 95%);
+    padding: .5em;
+}
+
+
 .editRow {
     background-color: green !important;
     color: white;

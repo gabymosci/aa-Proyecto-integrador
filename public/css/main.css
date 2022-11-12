@@ -9252,23 +9252,30 @@ main {
 
 .table-products {
   border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0.5em;
 }
-.table-products thead, .table-products tfoot {
-  background-color: hsl(203deg, 92%, 19%);
+.table-products__id, .table-products__name, .table-products__description, .table-products__price, .table-products__actions {
   background-color: var(--text-color);
   color: hsl(203deg, 92%, 95%);
   padding: 0.5em;
-  font-weight: bold;
 }
 .table-products td, .table-products th {
-  border: 1px solid hsl(203deg, 92%, 19%);
+  border: 1px solid hsl(203deg, 92%, 19%) !important;
   padding: 0.5em;
+  word-wrap: break-word;
 }
 .table-products tbody tr:nth-child(even) {
   background-color: hsl(203deg, 92%, 91%);
 }
 .table-products tbody tr:nth-child(odd) {
   background-color: hsl(203deg, 92%, 97%);
+}
+
+tfoot {
+  background-color: var(--text-color);
+  color: hsl(203deg, 92%, 95%);
+  padding: 0.5em;
 }
 
 .editRow {

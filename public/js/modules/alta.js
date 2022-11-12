@@ -3,8 +3,6 @@ import productController from '/js/controllers/product.js';
 
 console.warn('🆗: Módulo PageAlta cargado.');
 
-const _generalErrors = document.querySelector('.general-errors');
-
 class PageAlta {
 
     static productsTableContainer;
@@ -186,7 +184,26 @@ class PageAlta {
         const template = Handlebars.compile(hbsFile);
         const html = template({ products });
         PageAlta.productsTableContainer.innerHTML = html;
-
+        let options = {
+            numberPerPage:6, //Cantidad de datos por pagina
+            goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+            pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
+        };
+        let filterOptions = {
+            el:'#labelToAge' //Caja de texto para filtrar, puede ser una clase o un ID
+        };
+        
+        paginate.init('.table-products',options);
+        const tbody = document.getElementsByTagName('tbody');
+        const newDiv = document.createElement('tfoot');
+        const newtfoot = 
+        `
+        <tr>
+            <td colspan="5">Se encontraron ${products.length} productos</td>
+        </tr>
+        `;
+        newDiv.innerHTML = newtfoot
+        tbody[0].insertAdjacentElement('afterEnd',newDiv);
     }
 
     static async loadTable() {
