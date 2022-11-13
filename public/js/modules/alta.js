@@ -184,25 +184,29 @@ class PageAlta {
         const template = Handlebars.compile(hbsFile);
         const html = template({ products });
         PageAlta.productsTableContainer.innerHTML = html;
+
+        const objToPaginate = document.querySelector('.table-products');
+
         let options = {
             numberPerPage:6, //Cantidad de datos por pagina
             goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
         };
         let filterOptions = {
-            el:'#labelToAge' //Caja de texto para filtrar, puede ser una clase o un ID
+            el:'#searchSite' //Caja de texto para filtrar, puede ser una clase o un ID
         };
         
-        paginate.init('.table-products',options);
-        const tbody = document.getElementsByTagName('tbody');
-        const newDiv = document.createElement('tfoot');
+        paginate.init(objToPaginate,options,filterOptions);
+
+        const tbody = document.getElementsByTagName('table');
+        const newDiv = document.createElement('div');
         const newtfoot = 
         `
-        <tr>
-            <td colspan="5">Se encontraron ${products.length} productos</td>
-        </tr>
+        <div class="tfoot">
+            Se encontraron ${products.length} productos
+        </div>
         `;
-        newDiv.innerHTML = newtfoot
+        newDiv.innerHTML = newtfoot;
         tbody[0].insertAdjacentElement('afterEnd',newDiv);
     }
 

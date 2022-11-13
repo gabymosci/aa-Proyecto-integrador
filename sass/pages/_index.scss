@@ -185,9 +185,9 @@
     &__btn-create:disabled,
     &__btn-update:disabled,
     &__btn-cancel:disabled {
-        background-color: gray;
+        background-color: lightgray;
         color: white;
-        cursor: auto;
+        cursor: not-allowed;
     }
 }
 .btn {
@@ -202,7 +202,7 @@
         margin-right: 1em;
     }
     
-    &-submit:hover {
+    &-submit:hover:not(:disabled) {
         background-color: var(--btn-hover);
         box-shadow: 2px 2px var(--btn-shadow);
         transform: scale(1.1);
@@ -316,6 +316,15 @@
     font-weight: bold;
 }
 
-
-
+// Por sugerencia del profe se mejoró esto sacando los estilos en línea
+.fatal-error {
+    background-color:red; 
+    color: white; 
+    width:60%; 
+    margin:2em auto; 
+    text-align:center; 
+    padding:1em;
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, .5);
+    border-radius: .3em;
+}
 

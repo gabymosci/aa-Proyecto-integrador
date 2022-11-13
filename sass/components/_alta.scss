@@ -15,7 +15,7 @@
     display: none;
     background-color: var(--section-bg);
     border-radius: 5px;
-    padding: 2em 3em;
+    padding: 2em 3em 1em 3em;
     box-shadow: var(--box-shadow);
     margin-top: 1em;
     justify-content: center;
@@ -25,7 +25,6 @@
 .table-products {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: .5em;
 
     &__id,
     &__name,
@@ -34,32 +33,25 @@
     &__actions {
         background-color: var(--text-color);
         color: hsl(203, 92%, 95%);
-        padding: .5em;
+        padding: .3em;
     }
 
     & td,
     & th {
-        border: 1px solid hsl(203, 92%, 19%) !important;
+        border: 1px solid hsl(203, 92%, 19%);
         padding: .5em;
         word-wrap: break-word;
     }
 
-    // &__id {
-    //     width: 10em !important;
-    // }
-    // &__name {
-    //     width: 20em !important;
-    // }
-    // &__description {
-    //     width: 50em !important;
-    // }
-    // &__price {
-    //     width: 10em !important;
-    // }
-    // &__actions {
-    //     width: 8em !important;
-    // }
-
+    &__id {
+        width: 2vw;
+    }
+    &__name {
+        width: 10vw;
+    }
+    &__description {
+        width: 100vw;
+    }
         
     & tbody tr:nth-child(even) {
         background-color: hsl(203, 92%, 91%);
@@ -70,12 +62,16 @@
     }
 }
 
-tfoot {
+.tfoot {
     background-color: var(--text-color);
     color: hsl(203, 92%, 95%);
-    padding: .5em;
+    padding: .3em;
+    font-weight: bold;
 }
 
+.paginate_controls {
+    margin-top: .5em;
+}
 
 .editRow {
     background-color: green !important;

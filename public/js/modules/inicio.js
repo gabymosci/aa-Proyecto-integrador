@@ -21,12 +21,25 @@ class PageInicio {
         const template = Handlebars.compile(textToRender);
         const html = template({ products });
         document.querySelector('.cards-container').innerHTML = html;
-        let offer = document.querySelectorAll('.card__description p');
+        const offer = document.querySelectorAll('.card__description p');
         for (let i=0; i < offer.length; i++) {
             if (offer[i].innerHTML === 'Oferta imperdible!!!') {
                 offer[i].classList.add('offer');
             }
         }
+        const objToPaginate = document.querySelector('.cards-container')
+        let options = {
+            numberPerPage:12,    //Cantidad de datos por pagina
+            goBar:true,         //Barra donde puedes digitar el numero de la pagina al que quiere ir
+            pageCounter:true,   //Contador de paginas, en cual estas, de cuantas paginas
+            classEach: '.card', //Agregado: clase representa cada card
+        };
+        let filterOptions = {
+            el:'#searchSite' //Caja de texto para filtrar, puede ser una clase o un ID
+        };
+        
+        paginate.init(objToPaginate,options,filterOptions);
+
         programCart();
     }
 

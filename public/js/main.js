@@ -46,17 +46,10 @@ class Main {
             }
             module.init();
         } catch (error) {
+            // Por sugerencia del profe se mejoró esto sacando los estilos en línea
             document.querySelector('main').innerHTML =
             `
-            <div style="background-color:red; 
-                        color: white; 
-                        width:60%; 
-                        margin:2em auto; 
-                        text-align:center; 
-                        padding:1em;
-                        box-shadow: 5px 5px 3px rgba(0, 0, 0, .5);
-                        border-radius: .3em;
-                        ">
+            <div class="fatal-error">
                 <h5>Se produjo un error al intentar cargar el contenido de la página:</h5>
                 <h4>${moduleUrl}</h4>
                 <h5>Reintentalo en unos minutos. Si el problema persiste, <a href="#/contacto">contactanos</a></h5>

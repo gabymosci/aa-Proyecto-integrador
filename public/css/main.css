@@ -8546,6 +8546,50 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+.paginate_controls input {
+  background-color: white;
+  color: var(--text-color);
+  border: 1px solid darkgray;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  margin: 0.5px;
+}
+.paginate_controls input:hover:not(:disabled) {
+  background-color: lightblue;
+  background-color: hsl(203deg, 92%, 91%);
+}
+.paginate_controls input:disabled {
+  background-color: lightgray;
+  color: white;
+  cursor: not-allowed;
+}
+.paginate_controls .paginate_control_prev {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+.paginate_controls .paginate_control_next {
+  border-radius: 0 0.3rem 0.3rem 0;
+  margin-right: 1em;
+}
+
+.page-range {
+  border-radius: 0.3rem 0 0 0.3rem;
+  cursor: not-allowed !important;
+}
+
+#paginate_page_to_go {
+  outline: none;
+}
+
+#paginate-go-button {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+div.paginate input[type=button].active {
+  background-color: var(--text-color);
+  color: #fff;
+  font-weight: bold;
+}
+
 /*
 Efecto vidrio
 Uno:
@@ -9144,15 +9188,19 @@ main {
   display: block;
 }
 
-.cards-container {
+.outer-cards-container {
   background-color: var(--section-bg);
+  padding-bottom: 1em;
   border-radius: 5px;
   padding: 1em;
+  box-shadow: var(--box-shadow);
+}
+
+.cards-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: center;
-  box-shadow: var(--box-shadow);
   font-size: 12px;
 }
 
@@ -9244,7 +9292,7 @@ main {
   display: none;
   background-color: var(--section-bg);
   border-radius: 5px;
-  padding: 2em 3em;
+  padding: 2em 3em 1em 3em;
   box-shadow: var(--box-shadow);
   margin-top: 1em;
   justify-content: center;
@@ -9253,17 +9301,25 @@ main {
 .table-products {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 0.5em;
 }
 .table-products__id, .table-products__name, .table-products__description, .table-products__price, .table-products__actions {
   background-color: var(--text-color);
   color: hsl(203deg, 92%, 95%);
-  padding: 0.5em;
+  padding: 0.3em;
 }
 .table-products td, .table-products th {
-  border: 1px solid hsl(203deg, 92%, 19%) !important;
+  border: 1px solid hsl(203deg, 92%, 19%);
   padding: 0.5em;
   word-wrap: break-word;
+}
+.table-products__id {
+  width: 2vw;
+}
+.table-products__name {
+  width: 10vw;
+}
+.table-products__description {
+  width: 100vw;
 }
 .table-products tbody tr:nth-child(even) {
   background-color: hsl(203deg, 92%, 91%);
@@ -9272,10 +9328,15 @@ main {
   background-color: hsl(203deg, 92%, 97%);
 }
 
-tfoot {
+.tfoot {
   background-color: var(--text-color);
   color: hsl(203deg, 92%, 95%);
-  padding: 0.5em;
+  padding: 0.3em;
+  font-weight: bold;
+}
+
+.paginate_controls {
+  margin-top: 0.5em;
 }
 
 .editRow {
@@ -9572,9 +9633,9 @@ tfoot {
   color: var(--btn-active-text);
 }
 .form-product__btn-create:disabled, .form-product__btn-update:disabled, .form-product__btn-cancel:disabled {
-  background-color: gray;
+  background-color: lightgray;
   color: white;
-  cursor: auto;
+  cursor: not-allowed;
 }
 
 .btn-submit {
@@ -9587,7 +9648,7 @@ tfoot {
   transition: 0.2s;
   margin-right: 1em;
 }
-.btn-submit:hover {
+.btn-submit:hover:not(:disabled) {
   background-color: var(--btn-hover);
   box-shadow: 2px 2px var(--btn-shadow);
   transform: scale(1.1);
@@ -9687,6 +9748,17 @@ tfoot {
   color: red;
   font-size: 18px;
   font-weight: bold;
+}
+
+.fatal-error {
+  background-color: red;
+  color: white;
+  width: 60%;
+  margin: 2em auto;
+  text-align: center;
+  padding: 1em;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 0.3em;
 }
 
 /*# sourceMappingURL=main.css.map */

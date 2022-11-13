@@ -1,13 +1,17 @@
 // ===============================================Contenedor
-.cards-container {
+.outer-cards-container {
     background-color: var(--section-bg);
+    padding-bottom: 1em;
     border-radius: 5px;
     padding: 1em;
+    box-shadow: var(--box-shadow);
+}
+
+.cards-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
     justify-content: center;
-    box-shadow: var(--box-shadow);
     font-size: 12px;
 }
 

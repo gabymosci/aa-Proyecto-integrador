@@ -35,15 +35,20 @@
          * Inicializa todas las configuracion y validaciones antes de ejecutar
          * la paginacion y el filtro (en caso de ser asignado)
          **/
-        _lignePaginate.init = function(el, options = {numberPerPage: 10,goBar:false,pageCounter:true},filter = [{el: null}]
-        ){
+        _lignePaginate.init = function(el, options = {numberPerPage: 10,goBar:false,pageCounter:true,classEach:null},filter = [{el: null}]
+        ){  
+            let objToPaginate = {};
+            if (typeof el === 'object') {
+                objToPaginate = el;
+                el = '.' + el.getAttribute('class');
+            } 
             setTableEl(el);
             initTable(_lignePaginate.getEl());
             checkIsTableNull();
             setOptions(options);
             setConstNumberPerPage(options.numberPerPage);
             setFilterOptions(filter);
-            launchPaginate();
+            launchPaginate(objToPaginate,options.classEach);
         }
         /**
          * Configuraciones de la paginacion
@@ -202,8 +207,8 @@
              *
              * Tambien se encarga de agregar el boton de "gotopage" y "pagecounter"
              **/
-            let buttons = "<input type='button' value='← prev' class='paginate_control_prev' onclick='paginate.sort("+(currentPage - 1)+")' "+prevDisabled+">";
-            let buttonNumberOfPage = "<input type='button' value='" + currentPage + ' - ' + numberOfPage + "' disabled>";
+            let buttons = "<input type='button' value='← Anterior' class='paginate_control_prev' onclick='paginate.sort("+(currentPage - 1)+")' "+prevDisabled+">";
+            let buttonNumberOfPage = "<input class='page-range' type='button' value='" + currentPage + ' - ' + numberOfPage + "' disabled>";
 
             for (let $i=1; $i<=numberOfPage;$i++){
                 if(numberOfPage > 10){
@@ -213,7 +218,7 @@
                 }
             }
 
-            let nextButton = "<input type='button' value='next →' class='paginate_control_next' onclick='paginate.sort("+(currentPage + 1)+")' "+nextDisabled+">";
+            let nextButton = "<input type='button' value='Siguiente →' class='paginate_control_next' onclick='paginate.sort("+(currentPage + 1)+")' "+nextDisabled+">";
             buttons +=  nextButton;
 
             if(settings.pageCounter)
@@ -250,7 +255,7 @@
 
         var addGoToPage = function(){
             let inputBox = "<input type='number' id='paginate_page_to_go' value='1' min='1' max='"+ settings.numberOfPages +"'>";
-            let goButton = "<input type='button' id='paginate-go-button' value='Go' onclick='paginate.goToPage()'>  ";
+            let goButton = "<input type='button' id='paginate-go-button' value='Ir a página' onclick='paginate.goToPage()'>  ";
             return inputBox + goButton;
         }
 
@@ -263,14 +268,22 @@
             _lignePaginate.sort(page);
         }
 
-        var launchPaginate = function(){
+        var launchPaginate = function(objToPaginate,classFind){
             paginateAlreadyExists();
             table = settings.table;
             numberPerPage = settings.numberPerPage;
-            let rowCount = table.rows.length;
+            let row = objToPaginate.querySelectorAll('tr');
+            let rowCount = row.length;
+            if (!rowCount) {
+                row = objToPaginate.querySelectorAll(classFind);
+                rowCount = row.length;
+            }
             // obtener el nombre de la etiqueta de la primera celda (en la primera fila)
-            let firstRow = table.rows[0].firstElementChild.tagName;
-            // Verificando si la tabla tiene encaebzado
+
+            // let firstRow = table.rows[0].firstElementChild.tagName;
+            let firstRow = row[0].firstElementChild.tagName;
+            
+            // Verificando si la tabla tiene encabezado
             let hasHead = (firstRow === "TH");
             // contadores de bucles, para comenzar a contar desde las filas [1] (2da fila) si la primera fila tiene una etiqueta de encabezado
             let $i,$ii,$j = (hasHead)?1:0;
@@ -282,7 +295,8 @@
             if (pageCount > 1) {
                 settings.hasPagination = true;
                 for ($i = $j,$ii = 0; $i < rowCount; $i++, $ii++)
-                    tr[$ii] = table.rows[$i].outerHTML;
+                    // tr[$ii] = table.rows[$i].outerHTML;
+                    tr[$ii] = row[$i].outerHTML;
                 // Contenedor de los botones "paginate_controls"
                 table.insertAdjacentHTML("afterend","<div id='buttons' class='paginate paginate_controls'></div");
                 // Inicializando la tabla en la pagina 1
