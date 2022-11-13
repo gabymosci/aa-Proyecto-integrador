@@ -12,8 +12,10 @@ class PageAlta {
     static btnCreate;
     static btnUpdate;
     static btnCancel;
+    static btnSearch;
     static idProduct;
     static rowEdit;
+    static productCount;
 
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
@@ -174,8 +176,18 @@ class PageAlta {
             }
         });
 
+        // ---Botón Mostrar todos los productos
         PageAlta.buttonToggleTable.addEventListener('click', () => {
             this.toggleTable();
+        })
+
+        // ---Botón search site
+        PageAlta.btnSearch.addEventListener('input', () => {
+            const tableFoot = document.querySelector('.tfoot');
+            if (tableFoot) {
+                PageAlta.productCount = paginate.filter();
+                tableFoot.innerHTML = `Se encontraron ${PageAlta.productCount} productos`
+            }
         })
     }
 
@@ -198,12 +210,13 @@ class PageAlta {
         
         paginate.init(objToPaginate,options,filterOptions);
 
+        PageAlta.productCount = products.length;
         const tbody = document.getElementsByTagName('table');
         const newDiv = document.createElement('div');
         const newtfoot = 
         `
         <div class="tfoot">
-            Se encontraron ${products.length} productos
+            Se encontraron ${PageAlta.productCount} productos
         </div>
         `;
         newDiv.innerHTML = newtfoot;
@@ -349,9 +362,13 @@ class PageAlta {
 
     static async init() {
         console.log('PageAlta.init()');
-
+        PageAlta.btnSearch = document.querySelector('#searchSite')
+        
         PageAlta.prepareTable();
         PageAlta.prepareForm();
+
+        // PageAlta.toggleTable(); //****************sacar esto */
+
         programInputsAdd();
     }
 }

@@ -24,19 +24,17 @@
  * paginate.init('.myTable',options,filterOptions);
  **/
 
-(function(window){
-    'use strict';
 
+(function(window){
+        'use strict';
     // This function will contain all our code
     function lignePaginate(){
         var _lignePaginate = {};
-
         /**
          * Inicializa todas las configuracion y validaciones antes de ejecutar
          * la paginacion y el filtro (en caso de ser asignado)
          **/
-        _lignePaginate.init = function(el, options = {numberPerPage: 10,goBar:false,pageCounter:true,classEach:null},filter = [{el: null}]
-        ){  
+        _lignePaginate.init = function(el, options = {numberPerPage: 10,goBar:false,pageCounter:true,classEach:null},filter = [{el: null}]) {  
             let objToPaginate = {};
             if (typeof el === 'object') {
                 objToPaginate = el;
@@ -49,6 +47,7 @@
             setConstNumberPerPage(options.numberPerPage);
             setFilterOptions(filter);
             launchPaginate(objToPaginate,options.classEach);
+            
         }
         /**
          * Configuraciones de la paginacion
@@ -277,6 +276,9 @@
             if (!rowCount) {
                 row = objToPaginate.querySelectorAll(classFind);
                 rowCount = row.length;
+                if(!rowCount) {
+                    return
+                }
             }
             // obtener el nombre de la etiqueta de la primera celda (en la primera fila)
 
@@ -336,9 +338,32 @@
                 _lignePaginate.sort(1);
                 hiddenPaginateControls();
             }
+            const queryResult = [];
             const filter = document.querySelector(filterSettings.el).value.toUpperCase();
-            const trs = document.querySelectorAll( settings.el + ' tr:not(.header)');
-            trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
+            let trs = document.querySelectorAll( settings.el + ' tr:not(.header)');
+            if (trs.length === 0) {
+                trs = document.querySelectorAll('.card');
+                if (trs.length === 0) {
+                    return;
+                }
+                trs.forEach(article => {
+                    const strFind = [...article.children].find(div => div.innerHTML.toUpperCase().includes(filter));
+                    if (strFind) {
+                        queryResult.push(strFind);
+                    }
+                    article.style.display = [...article.children].find(div => div.innerHTML.toUpperCase().includes(filter)) ? '' : 'none'
+                });
+            } else {
+                trs.forEach(tr => {
+                    const strFind = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter));
+                    if (strFind) {
+                        queryResult.push(strFind);
+                    }
+                    tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none'
+                });
+            }
+
+            // trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
 
             if(filter.length == 0 && settings.hasPagination){
                 setNumberPerPage(_lignePaginate.getConstNumberPerPage());
@@ -346,11 +371,12 @@
                 showPaginatecontrols();
             }
 
+            return queryResult.length;
         }
 
         return _lignePaginate;
     }
-
+    
     if(typeof(window.paginate) === 'undefined'){
         window.paginate = lignePaginate();
     }

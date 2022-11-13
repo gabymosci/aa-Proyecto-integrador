@@ -69,6 +69,15 @@
     font-weight: bold;
 }
 
+.cfoot {
+    display: none;
+    background-color: var(--text-color);
+    color: hsl(203, 92%, 95%);
+    padding: .3em;
+    font-weight: bold;
+    margin-top: .8em;
+}
+
 .paginate_controls {
     margin-top: .5em;
 }

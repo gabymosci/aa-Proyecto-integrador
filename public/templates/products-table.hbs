@@ -2,7 +2,7 @@
     <table class="table-products">
         {{!-- <caption>Productos</caption> --}}
         <thead>
-            <tr>
+            <tr class="header">
                 <th class="table-products__id" scope="column">Id</th>
                 <th class="table-products__name" scope="column">Nombre</th>
                 <th class="table-products__description" scope="column">Descripción corta</th>
@@ -24,11 +24,11 @@
                 </tr>
             {{/each}}
         </tbody>
-        <tfoot>
+        {{!-- <tfoot>
             <tr>
                 <td colspan="5">Se encontraron {{products.length}} productos</td>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 {{else}}
     <p>No se encontraron productos</p>

@@ -2,6 +2,7 @@ import productController from '/js/controllers/product.js';
 import productCartController from '/js/controllers/productcart.js';
 import {toggleCart, cartContentVisible} from '../main.js';
 
+
 console.warn('🆗: Módulo PageInicio cargado.');
 
 // Borra todos los productos que pudieran estar en el cart content del servidor
@@ -16,6 +17,9 @@ initializeProductsCart();
 
 class PageInicio {
 
+    static btnSearch;
+    static productCount;
+
     static async renderTemplateCards(products) { 
         const textToRender = await fetch('/templates/card.hbs').then(r =>r.text());
         const template = Handlebars.compile(textToRender);
@@ -29,7 +33,7 @@ class PageInicio {
         }
         const objToPaginate = document.querySelector('.cards-container')
         let options = {
-            numberPerPage:12,    //Cantidad de datos por pagina
+            numberPerPage:6,    //Cantidad de datos por pagina
             goBar:true,         //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter:true,   //Contador de paginas, en cual estas, de cuantas paginas
             classEach: '.card', //Agregado: clase representa cada card
@@ -39,6 +43,16 @@ class PageInicio {
         };
         
         paginate.init(objToPaginate,options,filterOptions);
+        
+        const tbody = document.querySelector('.paginate_controls');
+        const newDiv = document.createElement('div');
+        const newtfoot = 
+        `
+            Se encontraron xxx productos
+        `;
+        newDiv.innerHTML = newtfoot;
+        newDiv.classList.add('cfoot');
+        tbody.insertAdjacentElement('beforebegin',newDiv);
 
         programCart();
     }
@@ -73,6 +87,23 @@ class PageInicio {
         const products = await productController.getProducts();
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
+        PageInicio.btnSearch = document.querySelector('#searchSite');
+
+        // ---Botón search site
+        PageInicio.btnSearch.addEventListener('input', () => {
+            const cardFoot = document.querySelector('.cfoot');
+            if (PageInicio.btnSearch.value) {
+                cardFoot.style.display = 'block';
+            } else {
+                cardFoot.style.display = 'none';
+            }
+            PageInicio.productCount = paginate.filter();
+            if (cardFoot) {
+                cardFoot.innerHTML = `Se encontraron ${PageInicio.productCount} productos`
+                
+            }
+        })
+
 
         console.log(`Se encontraron ${products.length} productos.`);
     }
