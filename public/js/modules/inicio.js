@@ -17,9 +17,6 @@ initializeProductsCart();
 
 class PageInicio {
 
-    static btnSearch;
-    static productCount;
-
     static async renderTemplateCards(products) { 
         const textToRender = await fetch('/templates/card.hbs').then(r =>r.text());
         const template = Handlebars.compile(textToRender);
@@ -31,6 +28,7 @@ class PageInicio {
                 offer[i].classList.add('offer');
             }
         }
+
         const objToPaginate = document.querySelector('.cards-container')
         let options = {
             numberPerPage:6,    //Cantidad de datos por pagina
@@ -39,16 +37,17 @@ class PageInicio {
             classEach: '.card', //Agregado: clase representa cada card
         };
         let filterOptions = {
-            el:'#searchSite' //Caja de texto para filtrar, puede ser una clase o un ID
+            el: '#searchSite-no', //Caja de texto para filtrar, puede ser una clase o un ID
         };
         
-        paginate.init(objToPaginate,options,filterOptions);
+        paginate.init(objToPaginate,options);
         
+
         const tbody = document.querySelector('.paginate_controls');
         const newDiv = document.createElement('div');
         const newtfoot = 
         `
-            Se encontraron xxx productos
+            Se encontraron nn productos
         `;
         newDiv.innerHTML = newtfoot;
         newDiv.classList.add('cfoot');
@@ -87,23 +86,6 @@ class PageInicio {
         const products = await productController.getProducts();
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
-        PageInicio.btnSearch = document.querySelector('#searchSite');
-
-        // ---Botón search site
-        PageInicio.btnSearch.addEventListener('input', () => {
-            const cardFoot = document.querySelector('.cfoot');
-            if (PageInicio.btnSearch.value) {
-                cardFoot.style.display = 'block';
-            } else {
-                cardFoot.style.display = 'none';
-            }
-            PageInicio.productCount = paginate.filter();
-            if (cardFoot) {
-                cardFoot.innerHTML = `Se encontraron ${PageInicio.productCount} productos`
-                
-            }
-        })
-
 
         console.log(`Se encontraron ${products.length} productos.`);
     }

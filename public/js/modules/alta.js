@@ -12,10 +12,8 @@ class PageAlta {
     static btnCreate;
     static btnUpdate;
     static btnCancel;
-    static btnSearch;
     static idProduct;
     static rowEdit;
-    static productCount;
 
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
@@ -180,15 +178,6 @@ class PageAlta {
         PageAlta.buttonToggleTable.addEventListener('click', () => {
             this.toggleTable();
         })
-
-        // ---Botón search site
-        PageAlta.btnSearch.addEventListener('input', () => {
-            const tableFoot = document.querySelector('.tfoot');
-            if (tableFoot) {
-                PageAlta.productCount = paginate.filter();
-                tableFoot.innerHTML = `Se encontraron ${PageAlta.productCount} productos`
-            }
-        })
     }
 
     static async renderTemplateTable(products) {
@@ -197,30 +186,33 @@ class PageAlta {
         const html = template({ products });
         PageAlta.productsTableContainer.innerHTML = html;
 
-        const objToPaginate = document.querySelector('.table-products');
 
+        const objToPaginate = document.querySelector('.table-products');
+        if (!objToPaginate) {
+            return;
+        }
         let options = {
             numberPerPage:6, //Cantidad de datos por pagina
             goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
         };
         let filterOptions = {
-            el:'#searchSite' //Caja de texto para filtrar, puede ser una clase o un ID
+            el:'#searchSite-no' //Caja de texto para filtrar, puede ser una clase o un ID
         };
-        
-        paginate.init(objToPaginate,options,filterOptions);
 
-        PageAlta.productCount = products.length;
+        paginate.init(objToPaginate,options);
+
         const tbody = document.getElementsByTagName('table');
         const newDiv = document.createElement('div');
         const newtfoot = 
         `
         <div class="tfoot">
-            Se encontraron ${PageAlta.productCount} productos
+            Se encontraron ${products.length} productos
         </div>
         `;
         newDiv.innerHTML = newtfoot;
         tbody[0].insertAdjacentElement('afterEnd',newDiv);
+
     }
 
     static async loadTable() {
@@ -231,7 +223,7 @@ class PageAlta {
     static async prepareTable() {
         PageAlta.productsTableContainer = document.querySelector('.products-table-container');
         PageAlta.buttonToggleTable      = document.querySelector('#show-all-products');
-        // await PageAlta.loadTable();
+        await PageAlta.loadTable();
         PageAlta.addTableEvents();
     }
 
@@ -300,7 +292,7 @@ class PageAlta {
     static async addFormEvents() {
         // ---Botón Crear
         PageAlta.btnCreate.addEventListener('click', async e => {
-            console.error('btn-create');
+            console.warn('btn-create');
             const productToSave = PageAlta.validateForm();
             console.log('productToSave:', productToSave);
             if (productToSave) {
@@ -320,14 +312,14 @@ class PageAlta {
 
         // ---Botón Guardar
         PageAlta.btnUpdate.addEventListener('click', async e => {
-            console.error('btn-update');
+            console.warn('btn-update');
             const productToSave = PageAlta.validateForm();
             console.log('productToUpdate:', productToSave);
             if (productToSave) {
                 const updatedProduct = await PageAlta.updateProduct(productToSave);
                 console.log('updatedProduct:', updatedProduct);
                 if (PageAlta.objectIsEmpty(updatedProduct)) {
-                    console.error('No se pudo guardar el producto');
+                    console.warn('No se pudo guardar el producto');
                     return;
                 }
                 const products = await productController.getProducts();
@@ -340,7 +332,7 @@ class PageAlta {
 
         // ---Botón Cancelar
         PageAlta.btnCancel.addEventListener('click', e => {
-            console.error('btn-cancel');
+            console.warn('btn-cancel');
             PageAlta.emptyForm();
             PageAlta.prepareFormForCreating();
         });
@@ -362,7 +354,6 @@ class PageAlta {
 
     static async init() {
         console.log('PageAlta.init()');
-        PageAlta.btnSearch = document.querySelector('#searchSite')
         
         PageAlta.prepareTable();
         PageAlta.prepareForm();

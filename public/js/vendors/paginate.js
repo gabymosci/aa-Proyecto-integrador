@@ -296,9 +296,10 @@
 
             if (pageCount > 1) {
                 settings.hasPagination = true;
-                for ($i = $j,$ii = 0; $i < rowCount; $i++, $ii++)
+                for ($i = $j,$ii = 0; $i < rowCount; $i++, $ii++) {
                     // tr[$ii] = table.rows[$i].outerHTML;
                     tr[$ii] = row[$i].outerHTML;
+                }
                 // Contenedor de los botones "paginate_controls"
                 table.insertAdjacentHTML("afterend","<div id='buttons' class='paginate paginate_controls'></div");
                 // Inicializando la tabla en la pagina 1

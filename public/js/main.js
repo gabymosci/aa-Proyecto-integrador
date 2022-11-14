@@ -81,9 +81,11 @@ class Main {
 
     async start() {
         await this.loadTemplates();
-        if (!CartInitialized) {
-            CartInitialized = true;
+
+        if (!pageInitialized) {
+            pageInitialized = true;
             programCartContent();
+            programSearchInput();
             // Observación del profe: en scroll / resize no debe permanecer fijo el generalErrors
             window.onscroll = () => {  
                 _generalErrors.innerHTML = '';
@@ -98,7 +100,7 @@ class Main {
     }
 }
 
-let CartInitialized = false;
+let pageInitialized = false;
 const main = new Main();
 main.start();
 
@@ -107,11 +109,11 @@ main.start();
 ////////////////////////////////////////////////////////////////////////////
 //    Programación botón Cart y cart content común a todas las páginas    //
 ////////////////////////////////////////////////////////////////////////////
-const cartBtn           = document.querySelector('.main-header__cart-button-container');
-const cartContent       = document.querySelector('.main-header__cart-content');
-const cartModalBox      = document.querySelector('.main-header__cart-modalbox');
-const _generalErrors    = document.querySelector('.general-errors');
-let cartContentVisible  = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
+const cartBtn               = document.querySelector('.main-header__cart-button-container');
+const cartContent           = document.querySelector('.main-header__cart-content');
+const cartModalBox          = document.querySelector('.main-header__cart-modalbox');
+const _generalErrors        = document.querySelector('.general-errors');
+const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 
 // ---Abre / Cierra cart content
 function toggleCart (autoClose) {
@@ -165,15 +167,15 @@ const programCartContent = () => {
 //////////////////////////////////////////////////////////////////////
 function validateInput(label, field, regExpText, minLen, maxLen, required, customMessage) {
     const _buttonSubmit = document.querySelector('.btn-validator');
-    let value = field.value.trim();
-    let message ='';
-    let messGral = 'no se ajusta al formato';
+    const value = field.value.trim();
+    let   message ='';
+    let   messGral = 'no se ajusta al formato';
     if (customMessage) { messGral = customMessage; }
-    let valueLength = value.length;
-    let minLength = minLen;
-    let maxLength = maxLen;
-    let coordsInput = field.getBoundingClientRect();
-    let coordsBtnSubmit = _buttonSubmit.getBoundingClientRect();
+    const valueLength = value.length;
+    const minLength = minLen;
+    const maxLength = maxLen;
+    const coordsInput = field.getBoundingClientRect();
+    const coordsBtnSubmit = _buttonSubmit.getBoundingClientRect();
 
     if (valueLength === 0 && required && (window.event.type === 'click' || window.event.type === 'submit')) {      // Obligatorio
         message = `${label} es obligatorio`;
@@ -217,5 +219,34 @@ function validateInput(label, field, regExpText, minLen, maxLen, required, custo
     }
 }
 
+//////////////////////////////////////////////////////////////////////
+//                     Input buscar en el sitio                     //
+//////////////////////////////////////////////////////////////////////
+function  programSearchInput () {
+    const inputSearch = document.querySelector('#searchSite');
+    let productCount = 0;
+    inputSearch.addEventListener('input', async () => {
+        
+        const cardFoot  = document.querySelector('.cfoot');
+        const tableFoot = document.querySelector('.tfoot');
+
+        if(!cardFoot && !tableFoot) {
+            return;
+        }
+        
+        if (cardFoot) {             // Busca en Inicio - Cards
+            if (inputSearch.value) {
+                cardFoot.style.display = 'block';
+                } else {
+                cardFoot.style.display = 'none';
+            }
+            productCount = paginate.filter();
+            cardFoot.innerHTML = `Se encontraron ${productCount} productos`;
+        } else if (tableFoot) {     // Busca en Alta - Table
+            productCount = paginate.filter();
+            tableFoot.innerHTML = `Se encontraron ${productCount} productos`;
+        }
+    })
+}
 
 export {toggleCart, cartContentVisible, validateInput};
