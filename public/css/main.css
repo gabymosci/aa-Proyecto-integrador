@@ -9216,9 +9216,12 @@ main {
   transition: 0.2s;
 }
 .card__image {
+  width: 210px;
+  height: 210px;
   width: 100%;
   padding: 0.2em;
   border-radius: 10px;
+  border: 1px solid lightgray;
 }
 .card__content {
   bottom: 45px;
@@ -9409,6 +9412,7 @@ main {
 }
 .section-cards__footer-container-article-image img {
   width: 150px;
+  width: 100%;
 }
 .section-cards__footer-container-article-text {
   padding: 0em 1em;
@@ -9590,29 +9594,32 @@ main {
   margin-right: 20px;
 }
 
-/*
-.fieldImage {
-    // border: 1px solid green;
-    & input {
-        width: 100%;
-        margin-top: 6px;
-        padding: 9px 10px;
-        border-radius: 4px;
-        background-color: white;
-        border: none;
-        box-shadow: var(--box-shadow);
-    }
+.fieldImage input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: white;
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+.fieldImage input:focus {
+  background-color: var(--link-hover-bg);
+  outline: none;
+}
 
-    & input:focus {
-        background-color: var(--link-hover-bg);
-        outline: none;
-    }
+#filename {
+  display: block;
+  padding-left: 1em;
+  padding-top: 0.3em;
+  font-weight: bold;
+}
+
+/*
+.fieldCheckBox  {
+    margin: 40px 15px 30px 0px;
 }
 */
-.fieldCheckBox {
-  margin: 40px 15px 30px 0px;
-}
-
 .fieldBorderRed {
   border: 1px solid red !important;
   background-color: rgba(247, 207, 207, 0.3) !important;

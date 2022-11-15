@@ -28,9 +28,12 @@
     transition: .2s;
 
     &__image {
+        width: 210px;
+        height: 210px;
         width: 100%;
         padding: .2em;
         border-radius: 10px;
+        border: 1px solid lightgray;
     }
 
     &__content {

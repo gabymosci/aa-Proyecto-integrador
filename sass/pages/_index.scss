@@ -118,13 +118,12 @@
 
 }
 
-/*
 .fieldImage {
-    // border: 1px solid green;
+    // border: 1px solid red;
     & input {
         width: 100%;
         margin-top: 6px;
-        padding: 9px 10px;
+        padding: 5px 10px;
         border-radius: 4px;
         background-color: white;
         border: none;
@@ -136,11 +135,18 @@
         outline: none;
     }
 }
-*/
 
+#filename {
+    display:block;
+    padding-left: 1em;
+    padding-top: .3em;
+    font-weight: bold;
+}
+/*
 .fieldCheckBox  {
     margin: 40px 15px 30px 0px;
 }
+*/
 
 // ---Bordes rojo y verde para estado de validación
 .fieldBorderRed {

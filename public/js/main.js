@@ -165,9 +165,12 @@ const programCartContent = () => {
 //////////////////////////////////////////////////////////////////////
 //                   Función validadora de inputs                   //
 //////////////////////////////////////////////////////////////////////
-function validateInput(label, field, regExpText, minLen, maxLen, required, customMessage) {
+function validateInput(label, field, regExpText, minLen, maxLen, required, customMessage,fileName) {
+    let value = field.value.trim();
+    if (field.name ==='image') {
+        value = fileName;
+    }
     const _buttonSubmit = document.querySelector('.btn-validator');
-    const value = field.value.trim();
     let   message ='';
     let   messGral = 'no se ajusta al formato';
     if (customMessage) { messGral = customMessage; }

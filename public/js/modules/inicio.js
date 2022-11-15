@@ -5,6 +5,7 @@ import {toggleCart, cartContentVisible} from '../main.js';
 
 console.warn('🆗: Módulo PageInicio cargado.');
 
+
 // Borra todos los productos que pudieran estar en el cart content del servidor
 async function initializeProductsCart() {
     const productsCart = await productCartController.getProductsCart({});
@@ -30,18 +31,18 @@ class PageInicio {
         }
 
         const objToPaginate = document.querySelector('.cards-container')
+
         let options = {
-            numberPerPage:6,    //Cantidad de datos por pagina
+            numberPerPage:12,    //Cantidad de datos por pagina
             goBar:true,         //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter:true,   //Contador de paginas, en cual estas, de cuantas paginas
             classEach: '.card', //Agregado: clase representa cada card
         };
         let filterOptions = {
-            el: '#searchSite-no', //Caja de texto para filtrar, puede ser una clase o un ID
+            el: '#searchSite', //Caja de texto para filtrar, puede ser una clase o un ID
         };
-        
-        paginate.init(objToPaginate,options);
-        
+
+        paginate.init(objToPaginate,options,filterOptions);
 
         const tbody = document.querySelector('.paginate_controls');
         const newDiv = document.createElement('div');
@@ -52,6 +53,8 @@ class PageInicio {
         newDiv.innerHTML = newtfoot;
         newDiv.classList.add('cfoot');
         tbody.insertAdjacentElement('beforebegin',newDiv);
+
+
 
         programCart();
     }

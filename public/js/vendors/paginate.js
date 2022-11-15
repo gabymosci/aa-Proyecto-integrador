@@ -185,7 +185,9 @@
         }
 
         var hiddenPaginateControls = function(){
-            document.querySelector('.paginate_controls').style.visibility = 'hidden';
+            if (document.querySelector('.paginate_controls')) {
+                document.querySelector('.paginate_controls').style.visibility = 'hidden';
+            }
         }
 
         var showPaginatecontrols = function(){
@@ -319,13 +321,15 @@
                 rows += tr[$i];
 
             table.innerHTML = rows;
-            document.getElementById("buttons").innerHTML = pageButtons(pageCount,selectedPageNumber);
-            document.getElementById("id"+selectedPageNumber).classList.add('active');
-            /**
-             * Esto se utiliza para mostrar el numero de la pagina en la que se encuentra
-             * generalmente se usa cuando las paginas son mayor a 10
-             **/
-            document.getElementById("id"+selectedPageNumber).style.display = 'unset';
+            if (document.getElementById("buttons")) {
+                document.getElementById("buttons").innerHTML = pageButtons(pageCount,selectedPageNumber);
+                document.getElementById("id"+selectedPageNumber).classList.add('active');
+                /**
+                 * Esto se utiliza para mostrar el numero de la pagina en la que se encuentra
+                 * generalmente se usa cuando las paginas son mayor a 10
+                 **/
+                document.getElementById("id"+selectedPageNumber).style.display = 'unset';
+            }
         }
 
         /**

@@ -97,6 +97,10 @@ class ProductModelMongoDB {
             // const updatedProduct = await ProductsModel.findOneAndUpdate({_id: id}, {$set: product}, {
             //     returnDocument: 'after'
             // });
+            if(product.image.includes('fakepath')) {
+                product.image = product.image.slice(12,200);
+            }
+
             const updatedProduct = await ProductsModel.findByIdAndUpdate(id, {$set: product}, {
                 returnDocument: 'after'
             }).lean() || {};

@@ -14,6 +14,7 @@ class PageAlta {
     static btnCancel;
     static idProduct;
     static rowEdit;
+    static imageName;
 
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
@@ -23,13 +24,13 @@ class PageAlta {
             PageAlta.btnUpdate.hidden = false;
             PageAlta.btnCancel.hidden = false;
             await PageAlta.loadTable();
-            PageAlta.buttonToggleTable.innerHTML = 'Ocultar todos los productos'
+            PageAlta.buttonToggleTable.innerHTML = 'Ocultar todos los productos';
             PageAlta.emptyForm();
     } else {
             document.querySelector('.section-products-table').style.display = 'none';
             PageAlta.btnUpdate.hidden = true;
             PageAlta.btnCancel.hidden = true;
-            PageAlta.buttonToggleTable.innerHTML = 'Mostrar todos los productos'
+            PageAlta.buttonToggleTable.innerHTML = 'Mostrar todos los productos';
             PageAlta.emptyForm();
         }
     }
@@ -62,7 +63,7 @@ class PageAlta {
             }
         
             async function pauseUntilButtonYes (clickListenerPromise)  {
-                await clickListenerPromise
+                await clickListenerPromise;
                 document.querySelector('.main-header__delete-modalbox').style.display = 'none';;
                 const deletedProduct = await productController.deleteProduct(id);
                 console.log('deletedProduct:', deletedProduct);
@@ -71,8 +72,8 @@ class PageAlta {
             }
         
             async function pauseUntilButtonNo (clickListenerPromise)  {
-                await clickListenerPromise
-                document.querySelector('.main-header__delete-modalbox').style.display = 'none';;
+                await clickListenerPromise;
+                document.querySelector('.main-header__delete-modalbox').style.display = 'none';
                 PageAlta.rowEdit.classList.remove('deleteRow');
                 return false;
             }
@@ -128,6 +129,7 @@ class PageAlta {
         removeBorders(_image);
 
         PageAlta.fields.forEach(field => field.value = '');
+        PageAlta.imageName.innerHTML='';
 
         function removeBorders(field) {
             field.classList.remove('fieldBorderGreen');
@@ -142,8 +144,13 @@ class PageAlta {
         console.log('productToEdit:', productToEdit);
         PageAlta.idProduct=productToEdit.id;
         PageAlta.fields.forEach(field => {
-            field.value = productToEdit[field.name];
+            if (field.type != 'file') {
+                field.value = productToEdit[field.name];
+            } else {
+                PageAlta.imageName.innerHTML=productToEdit[field.name];
+            }
         });
+
 
     }
 
@@ -192,15 +199,15 @@ class PageAlta {
             return;
         }
         let options = {
-            numberPerPage:6, //Cantidad de datos por pagina
+            numberPerPage:10, //Cantidad de datos por pagina
             goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
             pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
         };
         let filterOptions = {
-            el:'#searchSite-no' //Caja de texto para filtrar, puede ser una clase o un ID
+            el:'#searchSite' //Caja de texto para filtrar, puede ser una clase o un ID
         };
 
-        paginate.init(objToPaginate,options);
+        paginate.init(objToPaginate,options,filterOptions);
 
         const tbody = document.getElementsByTagName('table');
         const newDiv = document.createElement('div');
@@ -256,16 +263,16 @@ class PageAlta {
         const _toAge =               document.getElementById('toAge');
         const _image =               document.getElementById('image');
 
-        let _imageValid =            validateInput('Foto', _image, regExpImage, 2, 2000, true);
-        let _toAgeValid =            validateInput('Edad hasta', _toAge, regExpToAge, 0, 0, false);
-        let _fromAgeValid =          validateInput('Edad desde', _fromAge, regExpFromAge, 0, 0, false);
-        let _fullDescriptionValid =  validateInput('Descripción larga', _fullDescription, regExpFullDescription, 3, 2000, false);
-        let _shortDescriptionValid = validateInput('Descripción corta', _shortDescription, regExpShortDescription, 3, 80, true);
-        let _categoryValid =         validateInput('Categoría', _category, regExpCategory, 2, 50, false);
-        let _brandValid =            validateInput('Marca', _brand, regExpBrand, 2, 40, false);
-        let _stockValid =            validateInput('Stock', _stock, regExpStock, 0, 0, false);
-        let _priceValid =            validateInput('Precio', _price, regExpPrice, 0, 0, false);
-        let _nameValid =             validateInput('Nombre', _name, regExpName, 3, 30, true);
+        const _imageValid =            validateInput('Foto', _image, regExpImage, 2, 2000, true, '',PageAlta.imageName.innerHTML);
+        const _toAgeValid =            validateInput('Edad hasta', _toAge, regExpToAge, 0, 0, false);
+        const _fromAgeValid =          validateInput('Edad desde', _fromAge, regExpFromAge, 0, 0, false);
+        const _fullDescriptionValid =  validateInput('Descripción larga', _fullDescription, regExpFullDescription, 3, 2000, false);
+        const _shortDescriptionValid = validateInput('Descripción corta', _shortDescription, regExpShortDescription, 3, 80, true);
+        const _categoryValid =         validateInput('Categoría', _category, regExpCategory, 2, 50, false);
+        const _brandValid =            validateInput('Marca', _brand, regExpBrand, 2, 40, false);
+        const _stockValid =            validateInput('Stock', _stock, regExpStock, 0, 0, false);
+        const _priceValid =            validateInput('Precio', _price, regExpPrice, 0, 0, false);
+        const _nameValid =             validateInput('Nombre', _name, regExpName, 3, 30, true);
 
         if (_nameValid &&
             _priceValid &&
@@ -279,6 +286,9 @@ class PageAlta {
             _imageValid) {
                 for (const field of PageAlta.fields) {
                     productToSave[field.name] = field.value;
+                    if (field.name === 'image') {
+                        productToSave[field.name] = PageAlta.imageName.innerHTML;
+                    }
                 }
                 if (!productToSave.id) {
                     productToSave.id = PageAlta.idProduct;
@@ -286,7 +296,8 @@ class PageAlta {
             } else {
                 return false;
             }
-        return productToSave;
+
+            return productToSave;
     }
 
     static async addFormEvents() {
@@ -357,8 +368,7 @@ class PageAlta {
         
         PageAlta.prepareTable();
         PageAlta.prepareForm();
-
-        // PageAlta.toggleTable(); //****************sacar esto */
+        PageAlta.imageName = document.querySelector('#filename');
 
         programInputsAdd();
     }
@@ -436,7 +446,12 @@ function programInputsAdd() {
     });
     // ---_image
     _image.addEventListener('input', () => {
-        validateInput('Foto', _image, regExpImage, 2, 2000, true);
+        if(image.value.includes('fakepath')) {
+            PageAlta.imageName.innerHTML = image.value.slice(12,200);
+        } else {
+            PageAlta.imageName.innerHTML = image.value;
+        }
+        validateInput('Foto', _image, regExpImage, 2, 2000, true, '',PageAlta.imageName.innerHTML);
     });
 }
 
