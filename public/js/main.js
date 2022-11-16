@@ -171,27 +171,21 @@ const programCartContent = () => {
         cartModalBox.addEventListener('click', e => {
             if (e.target.classList.contains('main-header__cart-modalbox') || 
                 e.target.classList.contains('main-header__cart-content-button-close')) {
-                toggleCart();
+                    toggleCart();
             }
         });
 
         // tecla ESC carrito
         document.addEventListener('keyup', e => {
         if (e.key == 'Escape'  && cartContentVisible()) {
-                toggleCart();
+            toggleCart();
             }
         }, false);
 
         // --------Modal Mercado Pago
         payModalBox.addEventListener('click', e => {
-            // // Botón Pagar
-            // if (e.target.classList.contains('svelte-nd35fe')) {
-            //     togglePay(true);
-            // }
-
             // fuera de la ventana modal mercado pago
             if (e.target.querySelector('#cardPaymentBrick_container')) {
-                mpEnviado = 2; // cancela pago
                 togglePay();
             }
 
@@ -200,7 +194,6 @@ const programCartContent = () => {
         // tecla ESC Mercado Pago
         document.addEventListener('keyup', e => {
         if (e.key == 'Escape'  && payVisible()) {
-                mpEnviado = 2; // cancela pago
                 togglePay();
             }
         }, false);

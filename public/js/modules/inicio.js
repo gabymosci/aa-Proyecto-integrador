@@ -54,7 +54,6 @@ class PageInicio {
         newDiv.classList.add('cfoot');
         tbody.insertAdjacentElement('beforebegin',newDiv);
 
-
         programCart();
     }
 
@@ -123,7 +122,7 @@ function programCart () {
                     quanty = productsQty[i].value;
                     productsQty[i].setAttribute('value', quanty);
                     productContainer[i].classList.add('add');
-                    refreshCartContent();
+                    refreshCartContent(true);
                     if (!cartContentVisible()) { toggleCart(true); }
                     return;
                 } 
@@ -162,7 +161,7 @@ function programCart () {
             }
             document.getElementById('cart-title').insertAdjacentElement('afterEnd',newDiv);
         
-            refreshCartContent();
+            refreshCartContent(true);
             if (!cartContentVisible()) { toggleCart(true)}; 
         
             // Botón eliminar producto del carrito
@@ -196,7 +195,7 @@ function programCart () {
 //////////////////////////////////////////////////////////////////////
 //                       Refresh cart content                       //
 //////////////////////////////////////////////////////////////////////
-async function refreshCartContent () {
+async function refreshCartContent (autoClose) {
     const productId         = document.querySelectorAll('.card_id')
     const prices            = document.querySelectorAll('#product-price');
     const quanty            = document.querySelectorAll('#product-quantity');
@@ -246,6 +245,10 @@ async function refreshCartContent () {
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
         // ---Botón comprar
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
+        if (autoClose) {
+            buyButton.disabled = true;
+            // console.log('buyButton:', buyButton)
+        }
         buyButton.addEventListener('click', () => {
             buyOperation()
         })
@@ -259,6 +262,7 @@ async function refreshCartContent () {
     return total;
 }
 
+
 /////////////////////////////////////////////////////////////////////
 //                          Botón Comprar                          //
 /////////////////////////////////////////////////////////////////////
@@ -267,7 +271,6 @@ async function buyOperation () {
     const productId         = document.querySelectorAll('.main-header__cart-content .card_id')
     const quanty            = document.querySelectorAll('#product-quantity');
     const cartContent       = document.querySelector('.main-header__cart-content')
-
 
     let productRead;
     let productCartSaved;
@@ -285,38 +288,33 @@ async function buyOperation () {
         productCartSaved = await productCartController.saveProductCart(productCartToSave);
     }
 
-    // mpEnviado = 1;
-    // let mpAnt = mpEnviado;
-    // togglePay();
-    // console.log('deberia abrir pago');
-    // while (mpEnviado) {
-    //     if (mpEnviado != mpAnt) {
-    //         mpAnt = mpEnviado;
-    //         console.log(mpEnviado);
-    //     }
-    // }
-    
-    console.log(mpEnviado);
 
-    TODO: 'acá función pagar';
-    // if (!togglePay()) {
-    //     // Vacía cart container
-    //     cartContent.innerHTML= 
-    //     `
-    //     <button class="main-header__cart-content-button-close" title="Cerrar"></button>
-    //     <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
-    //     </div>
-    //     `
-    // }
-    
+    mpEnviado = 0;
+    togglePay();
+    const payMPButton = document.querySelector('.svelte-nd35fe');
+    payMPButton.addEventListener('click', () => {
+        setTimeout(() => {
+            if (mpEnviado === 3) {
+                // Vacía cart container
+                cartContent.innerHTML =
+                `
+                <button class="main-header__cart-content-button-close" title="Cerrar"></button>
+                <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
+                </div>
+                `;
 
-    // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
-    // se volverían a procesar los anteriores. Al refrescar - recargar la página también se borra.
+                // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
+                // se volverían a procesar los anteriores. Al refrescar o recargar la página también se borra.
 
-    // initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
+                initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
 
-    // refreshCartContent();
-    // toggleCart();
+                refreshCartContent();
+                toggleCart();
+            }
+        }, 390);
+
+    })
+
 }
 
 
