@@ -99,8 +99,6 @@ class Main {
         }
     }
 
-
-    
 }
 
 let pageInitialized = false;
@@ -134,7 +132,6 @@ function toggleCart (autoClose) {
             close();
         },1500);
     }
-
     function close () {
         cartContent.classList.add('out');
         setTimeout(() => {
@@ -145,18 +142,12 @@ function toggleCart (autoClose) {
 }
 
 // ---Abre / Cierra mercadopago
-function togglePay (buttonPay) {
+function togglePay () {
     if (!payVisible()) {            // Abre 
         payModalBox.style.display = 'flex';
         payContainer.classList.add('inmp');
-        return true;
     } else {                        // Cierra 
         closeMP();
-        if(buttonPay) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     function closeMP () {
@@ -191,18 +182,26 @@ const programCartContent = () => {
             }
         }, false);
 
-        // fuera de la ventana modal mercado pago
+        // --------Modal Mercado Pago
         payModalBox.addEventListener('click', e => {
+            // // Botón Pagar
+            // if (e.target.classList.contains('svelte-nd35fe')) {
+            //     togglePay(true);
+            // }
+
+            // fuera de la ventana modal mercado pago
             if (e.target.querySelector('#cardPaymentBrick_container')) {
-                togglePay(false);
+                mpEnviado = 2; // cancela pago
+                togglePay();
             }
 
         })
 
-        // tecla ESC mercadopago
+        // tecla ESC Mercado Pago
         document.addEventListener('keyup', e => {
         if (e.key == 'Escape'  && payVisible()) {
-                togglePay(false);
+                mpEnviado = 2; // cancela pago
+                togglePay();
             }
         }, false);
 

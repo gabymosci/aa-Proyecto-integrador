@@ -158,6 +158,8 @@
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
 <script>
+    var mpEnviado = 0;
+
     const mp = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28');
     // Access Token: TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622
     const bricksBuilder = mp.bricks();
@@ -181,8 +183,15 @@
                 onSubmit: (cardFormData) => {
                     try {
                         // CANCELADA FUNCION DE PAGO ****DESARROLLAR****
+                        mpEnviado = true;
                         setTimeout(() => {
-                            main.togglePay(true);
+                            mpEnviado = 3; //Procesado
+                            document.querySelector('#cardPaymentBrick_container').classList.add('out');
+                            setTimeout(() => {
+                                document.querySelector('#cardPaymentBrick_container').classList.remove('out');
+                                document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
+                            },390);
+
                         },2500);
 
                         return new Promise((resolve, reject) => {
