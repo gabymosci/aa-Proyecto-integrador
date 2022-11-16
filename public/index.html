@@ -170,9 +170,8 @@
 
         const settings = {
             initialization: {
-                amount: 100, //value of the payment to be processed
-                id: '0001',
-                title: 'prueba',
+            amount: 100, //value of the payment to be processed
+
             },
             customization: {
                 visual: {
@@ -183,6 +182,7 @@
             },
             callbacks: {
                 onSubmit: (cardFormData) => {
+                    console.log('cardFormData:', cardFormData)
                     try {
                         // CANCELADA FUNCION DE PAGO ****DESARROLLAR****
                         mpEnviado = 3;
