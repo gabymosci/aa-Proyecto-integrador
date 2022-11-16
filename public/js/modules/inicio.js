@@ -1,6 +1,6 @@
 import productController from '/js/controllers/product.js';
 import productCartController from '/js/controllers/productcart.js';
-import {toggleCart, cartContentVisible} from '../main.js';
+import {toggleCart, cartContentVisible, togglePay, payVisible} from '../main.js';
 
 
 console.warn('🆗: Módulo PageInicio cargado.');
@@ -53,7 +53,6 @@ class PageInicio {
         newDiv.innerHTML = newtfoot;
         newDiv.classList.add('cfoot');
         tbody.insertAdjacentElement('beforebegin',newDiv);
-
 
 
         programCart();
@@ -267,8 +266,9 @@ async function buyOperation () {
     const productCartToSave = {};
     const productId         = document.querySelectorAll('.main-header__cart-content .card_id')
     const quanty            = document.querySelectorAll('#product-quantity');
-    const cartModalBox      = document.querySelector('.main-header__cart-modalbox');
     const cartContent       = document.querySelector('.main-header__cart-content')
+
+
     let productRead;
     let productCartSaved;
     for (let i=0 ; i<productId.length ; i++) {
@@ -280,15 +280,21 @@ async function buyOperation () {
         productCartToSave.partial = productRead.price * Number(quanty[i].value);
         productCartSaved = await productCartController.saveProductCart(productCartToSave);
     }
-    // Vacía cart container
-    cartContent.innerHTML= 
-    `
-    <button class="main-header__cart-content-button-close" title="Cerrar"></button>
-    <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
-    </div>
-    `
 
     TODO: 'acá función pagar';
+    const payContent  = document.querySelector('#cardPaymentBrick_container-modalbox');
+    const modalPay = document.querySelector('#cardPaymentBrick_container-modalbox');
+    if (!togglePay()) {
+        // Vacía cart container
+        cartContent.innerHTML= 
+        `
+        <button class="main-header__cart-content-button-close" title="Cerrar"></button>
+        <div class="main-header__cart-content-title"><h4 id="cart-title">Productos en tu carrito</h4></div>
+        </div>
+        `
+    }
+
+    
 
     // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
     // se volverían a procesar los anteriores. Al refrescar - recargar la página también se borra.

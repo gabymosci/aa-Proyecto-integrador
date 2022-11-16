@@ -112,8 +112,21 @@ main.start();
 const cartBtn               = document.querySelector('.main-header__cart-button-container');
 const cartContent           = document.querySelector('.main-header__cart-content');
 const cartModalBox          = document.querySelector('.main-header__cart-modalbox');
+const payModalBox           = document.querySelector('#cardPaymentBrick_container-modalbox');
 const _generalErrors        = document.querySelector('.general-errors');
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
+const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
+
+// ---Abre / Cierra mercadopago
+function togglePay () {
+    if (!payVisible()) {            // Abre 
+        payModalBox.style.display = 'flex';
+        return true;
+    } else {                        // Cierra 
+        payModalBox.style.display = 'none';
+        return false;
+    }
+}
 
 // ---Abre / Cierra cart content
 function toggleCart (autoClose) {
@@ -153,13 +166,28 @@ const programCartContent = () => {
             }
         });
 
-        // tecla ESC
+        // tecla ESC carrito
         document.addEventListener('keyup', e => {
         if (e.key == 'Escape'  && cartContentVisible()) {
                 toggleCart();
             }
         }, false);
-};
+
+        payModalBox.addEventListener('click', e => {
+            if (e.target.querySelector('#cardPaymentBrick_container')) {
+                togglePay();
+            }
+
+        })
+
+        // tecla ESC mercadopago
+        document.addEventListener('keyup', e => {
+        if (e.key == 'Escape'  && payVisible()) {
+                togglePay();
+            }
+        }, false);
+
+    };
 
 
 //////////////////////////////////////////////////////////////////////
@@ -252,4 +280,4 @@ function  programSearchInput () {
     })
 }
 
-export {toggleCart, cartContentVisible, validateInput};
+export {toggleCart, cartContentVisible, validateInput, togglePay, payVisible};
