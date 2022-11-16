@@ -14,7 +14,7 @@ async function initializeProductsCart() {
     }
 }
 
-initializeProductsCart();
+// initializeProductsCart();
 
 class PageInicio {
 
@@ -275,15 +275,17 @@ async function buyOperation () {
         productRead = await productController.getProduct(productId[i].innerHTML);
         productCartToSave.productId = productId[i].innerHTML;
         productCartToSave.name = productRead.name;
+        productCartToSave.image = productRead.image;
         productCartToSave.price = productRead.price;
         productCartToSave.qty = Number(quanty[i].value);
         productCartToSave.partial = productRead.price * Number(quanty[i].value);
+        productCartToSave.time = new Date().toLocaleString();
+        productCartToSave.paidUp = false;
+
         productCartSaved = await productCartController.saveProductCart(productCartToSave);
     }
 
     TODO: 'acá función pagar';
-    const payContent  = document.querySelector('#cardPaymentBrick_container-modalbox');
-    const modalPay = document.querySelector('#cardPaymentBrick_container-modalbox');
     if (!togglePay()) {
         // Vacía cart container
         cartContent.innerHTML= 
@@ -301,8 +303,8 @@ async function buyOperation () {
 
     // initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
 
-    refreshCartContent();
-    toggleCart();
+    // refreshCartContent();
+    // toggleCart();
 }
 
 
@@ -356,5 +358,72 @@ function programCarrousel () {
 
 }
 
+//////////////////////////////////////////////////////////////////////
+//                           Mercado Pago                           //
+//////////////////////////////////////////////////////////////////////
+/*
+const mp = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28');
+// Access Token: TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622
+const bricksBuilder = mp.bricks();
 
+const renderCardPaymentBrick = async (bricksBuilder) => {
+
+    const settings = {
+        initialization: {
+            amount: 100, //value of the payment to be processed
+            id: '0001',
+            title: 'prueba',
+        },
+        customization: {
+            visual: {
+                style: {
+                    theme: 'default' // 'default' |'dark' | 'bootstrap' | 'flat'
+                } 
+            }
+        },
+        callbacks: {
+            onSubmit: (cardFormData) => {
+                try {
+                    // CANCELADA FUNCION DE PAGO ****DESARROLLAR****
+                    setTimeout(() => {
+                        togglePay(true);
+                    },2500);
+
+                    return new Promise((resolve, reject) => {
+                        fetch("/process_payment", { 
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(cardFormData)
+                        })
+                        .then((response) => {
+                            // get payment result
+                            resolve();
+                        })
+                        .catch((error) => {
+                            // get payment result error
+                            reject();
+                        })
+                    });
+                } catch (error){
+                    console.error('ERROR POST', error);
+                }
+            },
+
+            onReady: () => {
+                // handle form ready
+            },
+            onError: (error) => {
+                alert('error');
+            }
+        }                       
+    }
+
+    cardPaymentBrickController = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
+};
+
+renderCardPaymentBrick(bricksBuilder);
+
+*/
 export {refreshCartContent, PageInicio as default };

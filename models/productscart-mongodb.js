@@ -4,9 +4,12 @@ import DBMongoDB from './DB/MongoDB.js';
 const productCartSchema = mongoose.Schema({
     productId: String,
     name: String,
+    image: String,
     price: Number,
     qty: Number,
-    partial: Number
+    partial: Number,
+    time: String,
+    paidUp : Boolean
 });
 
 // Modelo del documento almacenado en la colección

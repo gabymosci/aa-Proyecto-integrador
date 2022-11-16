@@ -211,6 +211,22 @@
     }
 }
 
+.inmp {
+    animation-name: inmp;
+    animation-duration: .4s;
+
+    @keyframes inmp {
+        from {
+            top: -600px;
+            opacity: 0;
+        }
+        to {
+            top: 80px;
+            opacity: .9;
+        }
+    }
+}
+
 .out {
     animation-name: out;
     animation-duration: .4s;

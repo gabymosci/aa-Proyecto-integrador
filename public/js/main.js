@@ -98,6 +98,9 @@ class Main {
             };
         }
     }
+
+
+    
 }
 
 let pageInitialized = false;
@@ -113,20 +116,10 @@ const cartBtn               = document.querySelector('.main-header__cart-button-
 const cartContent           = document.querySelector('.main-header__cart-content');
 const cartModalBox          = document.querySelector('.main-header__cart-modalbox');
 const payModalBox           = document.querySelector('#cardPaymentBrick_container-modalbox');
+const payContainer          = document.querySelector('#cardPaymentBrick_container');
 const _generalErrors        = document.querySelector('.general-errors');
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
-
-// ---Abre / Cierra mercadopago
-function togglePay () {
-    if (!payVisible()) {            // Abre 
-        payModalBox.style.display = 'flex';
-        return true;
-    } else {                        // Cierra 
-        payModalBox.style.display = 'none';
-        return false;
-    }
-}
 
 // ---Abre / Cierra cart content
 function toggleCart (autoClose) {
@@ -151,6 +144,31 @@ function toggleCart (autoClose) {
     }
 }
 
+// ---Abre / Cierra mercadopago
+function togglePay (buttonPay) {
+    if (!payVisible()) {            // Abre 
+        payModalBox.style.display = 'flex';
+        payContainer.classList.add('inmp');
+        return true;
+    } else {                        // Cierra 
+        closeMP();
+        if(buttonPay) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function closeMP () {
+        payContainer.classList.add('out');
+        setTimeout(() => {
+            payContainer.classList.remove('out');
+            payModalBox.style.display = 'none';
+        },390);
+    }
+
+}
+
 // ---Controles para abrir y cerrar cart content
 const programCartContent = () => {
         // Botón carrito
@@ -158,7 +176,7 @@ const programCartContent = () => {
             toggleCart();
         });
     
-        // fuera de la ventana modal / botón X cerrar contenido
+        // fuera de la ventana modal / botón X cerrar contenido carrito
         cartModalBox.addEventListener('click', e => {
             if (e.target.classList.contains('main-header__cart-modalbox') || 
                 e.target.classList.contains('main-header__cart-content-button-close')) {
@@ -173,9 +191,10 @@ const programCartContent = () => {
             }
         }, false);
 
+        // fuera de la ventana modal mercado pago
         payModalBox.addEventListener('click', e => {
             if (e.target.querySelector('#cardPaymentBrick_container')) {
-                togglePay();
+                togglePay(false);
             }
 
         })
@@ -183,7 +202,7 @@ const programCartContent = () => {
         // tecla ESC mercadopago
         document.addEventListener('keyup', e => {
         if (e.key == 'Escape'  && payVisible()) {
-                togglePay();
+                togglePay(false);
             }
         }, false);
 

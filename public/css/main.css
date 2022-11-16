@@ -9074,6 +9074,21 @@ main {
   }
 }
 
+.inmp {
+  animation-name: inmp;
+  animation-duration: 0.4s;
+}
+@keyframes inmp {
+  from {
+    top: -600px;
+    opacity: 0;
+  }
+  to {
+    top: 80px;
+    opacity: 0.9;
+  }
+}
+
 .out {
   animation-name: out;
   animation-duration: 0.4s;
