@@ -123,7 +123,7 @@ function programCart () {
                     productsQty[i].setAttribute('value', quanty);
                     productContainer[i].classList.add('add');
                     refreshCartContent(true);
-                    if (!cartContentVisible()) { toggleCart(true); }
+                    if (!cartContentVisible()) { toggleCart(1); }
                     return;
                 } 
             }
@@ -162,7 +162,7 @@ function programCart () {
             document.getElementById('cart-title').insertAdjacentElement('afterEnd',newDiv);
         
             refreshCartContent(true);
-            if (!cartContentVisible()) { toggleCart(true)}; 
+            if (!cartContentVisible()) { toggleCart(1)}; 
         
             // Botón eliminar producto del carrito
             const buttonDel = document.querySelector('.main-header__cart-content-products-delete');
@@ -268,9 +268,11 @@ async function refreshCartContent (autoClose) {
 /////////////////////////////////////////////////////////////////////
 async function buyOperation () {
     const productCartToSave = {};
+
     const productId         = document.querySelectorAll('.main-header__cart-content .card_id')
     const quanty            = document.querySelectorAll('#product-quantity');
     const cartContent       = document.querySelector('.main-header__cart-content')
+    const payConfirmedModal = document.querySelector('.main-header__pay-confirmed-modalbox');
 
     let productRead;
     let productCartSaved;
@@ -309,7 +311,10 @@ async function buyOperation () {
                 initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
 
                 refreshCartContent();
-                toggleCart();
+                toggleCart(2);
+                setTimeout(() => {
+                    payConfirmedModal.style.display = 'flex';
+                },2500);
             }
         }, 390);
 

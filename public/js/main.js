@@ -115,6 +115,7 @@ const cartContent           = document.querySelector('.main-header__cart-content
 const cartModalBox          = document.querySelector('.main-header__cart-modalbox');
 const payModalBox           = document.querySelector('#cardPaymentBrick_container-modalbox');
 const payContainer          = document.querySelector('#cardPaymentBrick_container');
+const payConfirmedModal     = document.querySelector('.main-header__pay-confirmed-modalbox');
 const _generalErrors        = document.querySelector('.general-errors');
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
@@ -125,23 +126,28 @@ function toggleCart (autoClose) {
         cartModalBox.style.display = 'flex';
         cartContent.classList.add('in');
     } else {                        // Cierra 
-        close();
+        close(autoClose);
     }
     if (autoClose && cartContentVisible()) {    // Autocierre
         setTimeout(() => {
-            close();
+            close(autoClose);
         },1500);
     }
     function close () {
-        cartContent.classList.add('out');
-        setTimeout(() => {
+        if (autoClose === 1) {
+            cartContent.classList.add('out');
+            setTimeout(() => {
+                cartContent.classList.remove('out');
+                cartModalBox.style.display = 'none';
+            },390);
+        } else {
             cartContent.classList.remove('out');
             cartModalBox.style.display = 'none';
-        },390);
+        }
     }
 }
 
-// ---Abre / Cierra mercadopago
+// ---Abre / Cierra mercado pago
 function togglePay () {
     if (!payVisible()) {            // Abre 
         payModalBox.style.display = 'flex';
@@ -157,6 +163,7 @@ function togglePay () {
             payModalBox.style.display = 'none';
         },390);
     }
+
 
 }
 
@@ -182,9 +189,8 @@ const programCartContent = () => {
             }
         }, false);
 
-        // --------Modal Mercado Pago
+        // fuera de la ventana modal mercado pago
         payModalBox.addEventListener('click', e => {
-            // fuera de la ventana modal mercado pago
             if (e.target.querySelector('#cardPaymentBrick_container')) {
                 togglePay();
             }
@@ -198,6 +204,10 @@ const programCartContent = () => {
             }
         }, false);
 
+        // cualquier click ventada de pago aprobado
+        payConfirmedModal.addEventListener('click', () => {
+            payConfirmedModal.style.display = 'none';
+        })
     };
 
 
