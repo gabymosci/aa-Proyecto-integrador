@@ -59,7 +59,7 @@ class PageAlta {
             pauseUntilButtonNo(createPromise(buttonNo));
         
             function createPromise (target) {
-                return new Promise((resolve) => target.addEventListener('click', resolve)) ;
+                return new Promise((resolve) => target.addEventListener('click', resolve));
             }
         
             async function pauseUntilButtonYes (clickListenerPromise)  {

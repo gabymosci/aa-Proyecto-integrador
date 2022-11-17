@@ -316,7 +316,7 @@ async function buyOperation () {
                     payConfirmedModal.style.display = 'flex';
                 },2500);
             }
-        }, 390);
+        }, 400);
 
     })
 

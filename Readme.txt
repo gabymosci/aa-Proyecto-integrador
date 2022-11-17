@@ -1,4 +1,4 @@
-Requiere Node que funcione.
+Requiere Node para que funcione.
 
 -Abrir la carpeta contenedora con VSC
 -Abrir la Terminal (Ctrl-Ñ)
@@ -6,7 +6,8 @@ Requiere Node que funcione.
 npm i
 nodemon .
 
--En el eplorador de internet http://localhost:8080/
+-En el explorador de internet:
+http://localhost:8080/
 
 
 Para probar pago cualquiera de estas tarjetas (son para pruebas)
