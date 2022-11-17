@@ -8657,6 +8657,11 @@ body {
 main {
   margin-top: 80px;
 }
+@media (max-width: 768px) {
+  main {
+    margin-top: 0px;
+  }
+}
 
 .u-text-align-left {
   text-align: left !important;

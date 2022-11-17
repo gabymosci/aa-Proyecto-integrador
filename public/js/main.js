@@ -46,7 +46,7 @@ class Main {
             }
             module.init();
         } catch (error) {
-            // Por sugerencia del profe se mejoró esto sacando los estilos en línea
+            // Observación del profe: "El CSS en línea generado, como en initJS, tal vez es mejor reemplazarlo por una clase de CSS"
             document.querySelector('main').innerHTML =
             `
             <div class="fatal-error">
@@ -71,7 +71,6 @@ class Main {
         _generalErrors.innerHTML = '';
         _generalErrors.classList.remove('ok');
         _generalErrors.classList.add('ok');
-
     }
 
     async loadTemplates() {
@@ -86,7 +85,7 @@ class Main {
             pageInitialized = true;
             programCartContent();
             programSearchInput();
-            // Observación del profe: en scroll / resize no debe permanecer fijo el generalErrors
+            // Observación del profe: "Están buenos los mensajes de validación de los forms, pero al hacer scroll quedan quietos si están abiertos, algo a mejorar"
             window.onscroll = () => {  
                 _generalErrors.innerHTML = '';
                 _generalErrors.classList.add('ok');
@@ -96,6 +95,21 @@ class Main {
                 _generalErrors.innerHTML = '';
                 _generalErrors.classList.add('ok');
             };
+
+            // Observación del profe: "cerrar el menú desplegable de la navbar una vez que una página haya cargado"
+            const menu = document.querySelector('.main-nav__list'); 
+            const menuStyle = window.getComputedStyle(menu);
+            const menuToggle=document.getElementById('main-nav-toggle')
+            const navLinks = document.querySelectorAll('.main-nav__link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (menuStyle.getPropertyValue('flex-direction') === 'column') {
+                        menuToggle.checked = false;
+                    }
+                })
+            })
+
+
         }
     }
 
