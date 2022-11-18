@@ -17,7 +17,6 @@ class PageAlta {
     static rowEdit;
     static imageName;
     static imageShow;
-
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
     static async toggleTable () {
@@ -49,7 +48,7 @@ class PageAlta {
 
     static async deleteProduct(e) {
 
-        function confirmDialog () {
+        function confirmDialog (e) {
             const buttonYes = document.querySelector('.btn-submit-yes');
             const buttonNo  = document.querySelector('.btn-submit-no');
             const id = PageAlta.rowEdit.querySelector('td[data-product-property="id"]').innerHTML;
@@ -80,9 +79,8 @@ class PageAlta {
                 return false;
             }
         }
-        
-        confirmDialog();
 
+        confirmDialog(e);
     }
 
 /*
@@ -392,13 +390,13 @@ class PageAlta {
 /////////////////////////////////////////////////////////////////////
 
 // ---Expresiones regulares Alta
-const regExpName =              /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:\(\)%«»]{3,30}$/;
+const regExpName =              /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:;\/\(\)%«»]{3,30}$/;
 const regExpPrice =             /^([0-9]{1,10}(\.[0-9]{1,2})?)$/;            
 const regExpStock =             /^-?[0-9]+$/;      
-const regExpBrand =             /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:\(\)%«»]{2,40}$/;
-const regExpCategory =          /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:\(\)%«»]{2,50}$/;
-const regExpShortDescription =  /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:\(\)%«»]{2,80}$/;
-const regExpFullDescription =   /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:\(\)%\«\»]{2,2000}$/;
+const regExpBrand =             /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:;\/\(\)%«»]{2,40}$/;
+const regExpCategory =          /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:;\/\(\)%«»]{2,50}$/;
+const regExpShortDescription =  /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:;\/\(\)%«»]{2,80}$/;
+const regExpFullDescription =   /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9.\,"!¡*'\s-_:;\/\(\)%\«\»]{2,2000}$/;
 const regExpFromAge =           /^[0-9]+$/;
 const regExpToAge =             /^[0-9]+$/;
 const regExpImage =             '';

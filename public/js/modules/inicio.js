@@ -247,7 +247,6 @@ async function refreshCartContent (autoClose) {
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
         if (autoClose) {
             buyButton.disabled = true;
-            // console.log('buyButton:', buyButton)
         }
         buyButton.addEventListener('click', () => {
             buyOperation()
