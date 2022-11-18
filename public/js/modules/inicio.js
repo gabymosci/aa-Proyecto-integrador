@@ -180,7 +180,7 @@ function programCart () {
             const inputQty = document.querySelector('#product-quantity');
             inputQty.addEventListener('input', e => {
                 const productContainer = e.target.closest('.main-header__cart-content-products');
-                let currentQty = productContainer.querySelector('#product-quantity');
+                const currentQty = productContainer.querySelector('#product-quantity');
                 quanty = currentQty.value;
                 if (quanty <= 0) { quanty = '1'; }
                 currentQty.setAttribute('value', quanty);
@@ -235,7 +235,7 @@ async function refreshCartContent (autoClose) {
 
     if (cartQty > 0) {
         cartRedQty.innerHTML = cartQty;
-        let lastProduct = document.querySelectorAll('.main-header__cart-content-products');
+        const lastProduct = document.querySelectorAll('.main-header__cart-content-products');
         if (deleteDiv) { deleteDiv.remove(); }
         cartRedQty.style.display = 'flex';
         newDiv = document.createElement('div');
@@ -330,7 +330,7 @@ function programCarrousel () {
     const itemN             = document.querySelectorAll('.carrousel__item-n');
     const prevButton        = document.getElementById('slide-arrow-prev');
     const nextButton        = document.getElementById('slide-arrow-next');
-    let press = ['R','R','L','L'];
+    const press = ['R','R','L','L'];
     let inter = -1;
     
     function showSlide(n) {

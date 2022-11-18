@@ -9,48 +9,48 @@
             <div  class="add-container__fields">
                 <div class="field">
                     <label for="name">Nombre<sup class="required">*</sup></label>
-                    <input type="text" id="name" name="name" autofocus>
+                    <input type="text" id="name" name="name" placeholder="Chicco First Bike" autofocus>
                 </div>
         
                 <div class="field">
                     <label for="price">Precio</label>
-                    <input type="text" id="price" name="price">
+                    <input type="text" id="price" name="price" placeholder="1490">
                 </div>
         
                 <div class="field">
                     <label for="stock">Stock</label>
-                    <input type="text" id="stock" name="stock">
+                    <input type="text" id="stock" name="stock" placeholder="27">
                 </div>
         
                 <div class="field">
                     <label for="brand">Marca</label>
-                    <input type="text" id="brand" name="brand">
+                    <input type="text" id="brand" name="brand" placeholder="Chicco">
                 </div>
         
                 <div class="field">
                     <label for="category">Categoría</label>
-                    <input type="text" id="category" name="category">
+                    <input type="text" id="category" name="category" placeholder="Aire libre">
                 </div>
         
                 <div class="field">
                     <label for="shortDescription">Descripción corta<sup class="required">*</sup></label>
-                    <input type="text" id="shortDescription" name="shortDescription">
+                    <input style="text-overflow: ellipsis;" type="text" id="shortDescription" name="shortDescription" placeholder="Juguemos a ser ciclistas con la bici sin pedales de Chicco">
                 </div>
         
                 <div class="field">
                     <label for="fullDescription">Descripción larga</label>
-                    <textarea id="fullDescription" name="fullDescription" style="height:100px"></textarea>
+                    <textarea id="fullDescription" name="fullDescription" style="height:100px" placeholder="Si a tu hijo le gusta el ciclismo este es el regalo perfecto que le podrás hacer para que desarrolle sus habilidades espaciales y pueda convertirse en un corredor de élite."></textarea>
                 </div>
                 
                 <div class="fieldAge">
                     <div class="field">
                         <label for="fromAge">Edad Desde</label>
-                        <input type="text" id="fromAge" name="fromAge">
+                        <input type="text" id="fromAge" name="fromAge" placeholder="4">
                     </div>
                     
                     <div class="field">
                         <label id="labelToAge" for="toAge">Edad Hasta</label>
-                        <input type="text" id="toAge" name="toAge">
+                        <input type="text" id="toAge" name="toAge" placeholder="6">
                     </div>
 
                 </div>
@@ -78,7 +78,10 @@
                 <div class="fieldImage">
                     <label for="image">Foto<sup class="required">*</sup></label>
                     <input type="file" accept="image/*" id="image" name="image">
-                    <span id="filename" name="filename"></span>
+                    <div class="imageShow">
+                        <img class="image-form" src="" alt="">
+                        <span id="filename" name="filename"></span>
+                    </div>
                 </div>
 
 <!--  

@@ -28,6 +28,7 @@
 
     &__id,
     &__name,
+    &__image,
     &__description,
     &__price,
     &__actions {
@@ -41,25 +42,33 @@
         border: 1px solid hsl(203, 92%, 19%);
         padding: .5em;
         word-wrap: break-word;
+
+        & tbody tr:nth-child(even) {
+            background-color: hsl(203, 92%, 91%);
+        }
+
+        & tbody tr:nth-child(odd) {
+            background-color: hsl(203, 92%, 97%);
+        }
     }
 
     &__id {
         width: 2vw;
     }
     &__name {
-        width: 10vw;
+        width: 15vw;
     }
     &__description {
         width: 100vw;
     }
         
-    & tbody tr:nth-child(even) {
-        background-color: hsl(203, 92%, 91%);
+
+    .image-table {
+        width: 50px;
+        box-shadow: var(--box-shadow);
+        border-radius: 3px;
     }
 
-    & tbody tr:nth-child(odd) {
-        background-color: hsl(203, 92%, 97%);
-    }
 }
 
 .tfoot {

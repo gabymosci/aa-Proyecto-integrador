@@ -3,6 +3,7 @@ import productController from '/js/controllers/product.js';
 
 console.warn('🆗: Módulo PageAlta cargado.');
 
+
 class PageAlta {
 
     static productsTableContainer;
@@ -15,6 +16,7 @@ class PageAlta {
     static idProduct;
     static rowEdit;
     static imageName;
+    static imageShow;
 
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
@@ -130,6 +132,9 @@ class PageAlta {
 
         PageAlta.fields.forEach(field => field.value = '');
         PageAlta.imageName.innerHTML='';
+        PageAlta.imageShow.src='';
+        PageAlta.imageShow.alt='';
+        PageAlta.imageShow.title='';
 
         function removeBorders(field) {
             field.classList.remove('fieldBorderGreen');
@@ -148,6 +153,9 @@ class PageAlta {
                 field.value = productToEdit[field.name];
             } else {
                 PageAlta.imageName.innerHTML=productToEdit[field.name];
+                PageAlta.imageShow.src='img/' + productToEdit[field.name];
+                PageAlta.imageShow.alt=productToEdit[field.name];
+                PageAlta.imageShow.title=productToEdit[field.name];
             }
         });
 
@@ -369,6 +377,7 @@ class PageAlta {
         PageAlta.prepareTable();
         PageAlta.prepareForm();
         PageAlta.imageName = document.querySelector('#filename');
+        PageAlta.imageShow = document.querySelector('.image-form');
 
         programInputsAdd();
     }
@@ -451,6 +460,9 @@ function programInputsAdd() {
         } else {
             PageAlta.imageName.innerHTML = image.value;
         }
+        PageAlta.imageShow.src = 'img/' + PageAlta.imageName.innerHTML;
+        PageAlta.imageShow.alt = PageAlta.imageName.innerHTML;
+        PageAlta.imageShow.title = PageAlta.imageName.innerHTML;
         validateInput('Foto', _image, regExpImage, 2, 2000, true, '',PageAlta.imageName.innerHTML);
     });
 }

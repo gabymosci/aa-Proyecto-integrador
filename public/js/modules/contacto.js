@@ -53,9 +53,9 @@ function programFormContact() {
         const _comment =      document.getElementById('comment');
 
         e.preventDefault();
-        let _commentValid =   validateInput('Comentarios', _comment, regExpComment, 10, 2000, true);
-        let _eMailValid =     validateInput('Email', _eMail, regExpEMail, 0, 0, true);
-        let _firstNameValid = validateInput('Nombre', _firstName, regExpFirstName, 3, 30, true);
+        const _commentValid =   validateInput('Comentarios', _comment, regExpComment, 10, 2000, true);
+        const _eMailValid =     validateInput('Email', _eMail, regExpEMail, 0, 0, true);
+        const _firstNameValid = validateInput('Nombre', _firstName, regExpFirstName, 3, 30, true);
 
         if (_firstNameValid &&
             _eMailValid &&

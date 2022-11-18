@@ -5,6 +5,7 @@
             <tr class="header">
                 <th class="table-products__id" scope="column">Id</th>
                 <th class="table-products__name" scope="column">Nombre</th>
+                <th class="table-products__image" scope="column">Foto</th>
                 <th class="table-products__description" scope="column">Descripción corta</th>
                 <th class="table-products__price" scope="column">Precio</th>
                 <th class="table-products__actions" scope="column">Acciones</th>
@@ -15,6 +16,7 @@
                 <tr id="table-row">
                     <td data-product-property="id">{{id}}</td>
                     <td data-product-property="name">{{name}}</td>
+                    <td data-product-property="image"><img class="image-table" src="img/{{image}}" alt="{{name}}"></td>
                     <td data-product-property="description">{{shortDescription}}</td>
                     <td data-product-property="price">{{price}}</td>
                     <td>

@@ -55,6 +55,7 @@
 // ===============================================Inputs
 .field  {
     // border: 1px solid red;
+
     & input, textarea {
         width: 100%;
         padding: 8px;
@@ -72,6 +73,11 @@
         background-color: var(--link-hover-bg);
         outline: none;
     }
+
+    @media (max-width: 768px) {
+        margin-bottom: 1em;
+    }
+
 }
 
 .fieldAge {
@@ -106,7 +112,7 @@
 }
 
 .fieldRadio__inputs {
-    // border: 1px solid green;
+    // border: 1px solid red;
     background-color: white;
     padding: 8px 0px 8px 12px;
     box-shadow: var(--box-shadow);
@@ -116,10 +122,14 @@
         margin-right: 20px;
     }
 
+    @media (max-width: 768px) {
+        margin-bottom: 1em;
+    }
+
 }
 
 .fieldImage {
-    // border: 1px solid red;
+    // border: 1px solid green;
     & input {
         width: 100%;
         margin-top: 6px;
@@ -134,14 +144,29 @@
         background-color: var(--link-hover-bg);
         outline: none;
     }
+
+    & .imageShow {
+        display: flex;
+        align-items: center;
+    
+        & .image-form {
+            width: 50px;
+            box-shadow: var(--box-shadow);
+            border-radius: 3px;
+            margin: .3em .3em .3em .6em;
+        }
+        
+        & #filename {
+            margin-left: .5em;
+            font-weight: bold;
+        }
+    }
+    @media (max-width: 768px) {
+        margin-bottom: 1em;
+    }
+
 }
 
-#filename {
-    display:block;
-    padding-left: 1em;
-    padding-top: .3em;
-    font-weight: bold;
-}
 /*
 .fieldCheckBox  {
     margin: 40px 15px 30px 0px;

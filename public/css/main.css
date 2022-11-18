@@ -9381,7 +9381,7 @@ main {
   border-collapse: collapse;
   width: 100%;
 }
-.table-products__id, .table-products__name, .table-products__description, .table-products__price, .table-products__actions {
+.table-products__id, .table-products__name, .table-products__image, .table-products__description, .table-products__price, .table-products__actions {
   background-color: var(--text-color);
   color: hsl(203deg, 92%, 95%);
   padding: 0.3em;
@@ -9391,20 +9391,25 @@ main {
   padding: 0.5em;
   word-wrap: break-word;
 }
+.table-products td tbody tr:nth-child(even), .table-products th tbody tr:nth-child(even) {
+  background-color: hsl(203deg, 92%, 91%);
+}
+.table-products td tbody tr:nth-child(odd), .table-products th tbody tr:nth-child(odd) {
+  background-color: hsl(203deg, 92%, 97%);
+}
 .table-products__id {
   width: 2vw;
 }
 .table-products__name {
-  width: 10vw;
+  width: 15vw;
 }
 .table-products__description {
   width: 100vw;
 }
-.table-products tbody tr:nth-child(even) {
-  background-color: hsl(203deg, 92%, 91%);
-}
-.table-products tbody tr:nth-child(odd) {
-  background-color: hsl(203deg, 92%, 97%);
+.table-products .image-table {
+  width: 50px;
+  box-shadow: var(--box-shadow);
+  border-radius: 3px;
 }
 
 .tfoot {
@@ -9632,6 +9637,11 @@ main {
   background-color: var(--link-hover-bg);
   outline: none;
 }
+@media (max-width: 768px) {
+  .field {
+    margin-bottom: 1em;
+  }
+}
 
 .fieldAge {
   display: flex;
@@ -9669,6 +9679,11 @@ main {
 .fieldRadio__inputs label {
   margin-right: 20px;
 }
+@media (max-width: 768px) {
+  .fieldRadio__inputs {
+    margin-bottom: 1em;
+  }
+}
 
 .fieldImage input {
   width: 100%;
@@ -9683,12 +9698,24 @@ main {
   background-color: var(--link-hover-bg);
   outline: none;
 }
-
-#filename {
-  display: block;
-  padding-left: 1em;
-  padding-top: 0.3em;
+.fieldImage .imageShow {
+  display: flex;
+  align-items: center;
+}
+.fieldImage .imageShow .image-form {
+  width: 50px;
+  box-shadow: var(--box-shadow);
+  border-radius: 3px;
+  margin: 0.3em 0.3em 0.3em 0.6em;
+}
+.fieldImage .imageShow #filename {
+  margin-left: 0.5em;
   font-weight: bold;
+}
+@media (max-width: 768px) {
+  .fieldImage {
+    margin-bottom: 1em;
+  }
 }
 
 /*

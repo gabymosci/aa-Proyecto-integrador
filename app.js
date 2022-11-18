@@ -4,6 +4,15 @@ import routerProductsCart from './routers/productscart.js';
 // import ProductModelMongoDB from './models/products-mongodb.js';
 import config from './config.js';
 
+
+/*
+import mercadopago from 'mercadopago';
+mercadopago.configure({
+    access_token: "TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622",
+});
+*/
+
+
 // await ProductModelMongoDB.connectDB();
 // ProductModelMongoDB.connectDB();
 
