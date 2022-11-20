@@ -62,6 +62,8 @@ class Main {
     async loadTemplate() {
         const id = this.getIdFromHash();
         const viewUrl = this.getViewUrlFromId(id);
+
+        
         const viewContent = await this.ajax(viewUrl);
         document.querySelector('main').innerHTML = viewContent;
 
@@ -75,11 +77,15 @@ class Main {
 
     async loadTemplates() {
         this.loadTemplate();
-        window.addEventListener('hashchange', () => this.loadTemplate());
+        window.addEventListener('hashchange', () => {
+            waitProgress.style.display = 'flex';
+            this.loadTemplate()
+        });
     }
 
     async start() {
         await this.loadTemplates();
+        waitProgress.style.display = 'flex';
 
         if (!pageInitialized) {
             pageInitialized = true;
@@ -108,9 +114,8 @@ class Main {
                     }
                 })
             })
-
-
         }
+        
     }
 
 }
@@ -131,6 +136,8 @@ const payModalBox           = document.querySelector('#cardPaymentBrick_containe
 const payContainer          = document.querySelector('#cardPaymentBrick_container');
 const payConfirmedModal     = document.querySelector('.main-header__pay-confirmed-modalbox');
 const _generalErrors        = document.querySelector('.general-errors');
+const waitProgress          = document.querySelector('.spin-modalbox');
+console.log('waitProgress:', waitProgress)
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
 
@@ -315,4 +322,4 @@ function  programSearchInput () {
     })
 }
 
-export {toggleCart, cartContentVisible, validateInput, togglePay, payVisible};
+export {toggleCart, cartContentVisible, validateInput, togglePay, payVisible, waitProgress};

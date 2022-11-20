@@ -72,6 +72,16 @@
         overflow: hidden;
         background-color: var(--body-footer-bg);
         transition: .2s;
+
+        & img {
+            width: 140px;
+            height: 140px;
+            margin-left: 5px;
+            margin-top: 5px;
+            box-shadow: var(--box-shadow);
+            border-radius: 4px;
+        }
+
     }
 
     &__item-n:hover {

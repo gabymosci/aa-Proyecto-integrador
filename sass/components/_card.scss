@@ -27,13 +27,17 @@
     border-radius: 5px 5px 0 0;
     transition: .2s;
 
-    &__image {
-        width: 210px;
-        height: 210px;
-        width: 100%;
+    &__image-container {
         padding: .2em;
-        border-radius: 10px;
-        border: 1px solid lightgray;
+
+        & img {
+            width: 210px;
+            height: 210px;
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1em;
+            box-shadow: var(--box-shadow);
+        }
     }
 
     &__content {
@@ -43,6 +47,7 @@
 
     &__heading {
         margin-top: -5px;
+        margin-bottom: 1em;
     }
 
     &__description p {

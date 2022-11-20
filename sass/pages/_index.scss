@@ -336,6 +336,28 @@
         }
     }
 }
+
+// ===============================================Wait spin
+.spin-modalbox {
+    display: none;
+    display: flex;  //*** sólo para desarrollo ***
+    position: fixed;
+    z-index: 5; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    justify-content: center;
+
+    & img {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        top: 45%;
+    }
+}
+
+
 // ===============================================Varios
 .required {
     color: red;

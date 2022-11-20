@@ -1,4 +1,4 @@
-import {validateInput} from '../main.js';
+import {validateInput, waitProgress} from '../main.js';
 
 console.warn('🆗: Módulo PageContacto cargado.');
 
@@ -8,6 +8,8 @@ class PageContacto {
         
         programInputsContact();
         programFormContact();
+
+        waitProgress.style.display = 'none'; 
     }
 }
 

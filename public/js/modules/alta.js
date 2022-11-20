@@ -1,4 +1,4 @@
-import {validateInput} from '../main.js';
+import {validateInput, waitProgress} from '../main.js';
 import productController from '/js/controllers/product.js';
 
 console.warn('🆗: Módulo PageAlta cargado.');
@@ -377,6 +377,7 @@ class PageAlta {
         PageAlta.imageName = document.querySelector('#filename');
         PageAlta.imageShow = document.querySelector('.image-form');
 
+        waitProgress.style.display = 'none'; 
         programInputsAdd();
     }
 }

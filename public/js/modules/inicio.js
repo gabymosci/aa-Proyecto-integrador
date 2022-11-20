@@ -1,6 +1,6 @@
 import productController from '/js/controllers/product.js';
 import productCartController from '/js/controllers/productcart.js';
-import {toggleCart, cartContentVisible, togglePay, payVisible} from '../main.js';
+import {toggleCart, cartContentVisible, togglePay, payVisible, waitProgress} from '../main.js';
 
 
 console.warn('🆗: Módulo PageInicio cargado.');
@@ -55,6 +55,7 @@ class PageInicio {
         tbody.insertAdjacentElement('beforebegin',newDiv);
 
         programCart();
+        
     }
 
     static async renderTemplateCarrousel(products) {
@@ -67,17 +68,35 @@ class PageInicio {
         let resultText = '';
         let classItem = 0;
         let carrItem;
-        let index = products.length - 9;
-        for (let i=0; i < 9; i++) {
-            if(i % 3 === 0) {
-                resultText = '';
-                classItem++;
-                carrItem = document.getElementById(`carrousel__item-${classItem}`);
+        let qtyOfert = 0;
+        // Pone en el carrousel los 9 primeros productos que tienen "Oferta imperdible!!!"
+        for (let i=0; i < products.length; i++) {
+            if (products[i].shortDescription === 'Oferta imperdible!!!') {
+                if(qtyOfert % 3 === 0) {
+                    resultText = '';
+                    classItem++;
+                    carrItem = document.getElementById(`carrousel__item-${classItem}`);
+                }
+                resultText += template(products[i]);
+                carrItem.innerHTML = resultText;
+                qtyOfert++;
+                if (qtyOfert >= 9) {break;}
             }
-            resultText += template(products[index]);
-            carrItem.innerHTML = resultText;
-            index++;
         }
+
+
+
+        // let index = products.length - 9;
+        // for (let i=0; i < 9; i++) {
+        //     if(i % 3 === 0) {
+        //         resultText = '';
+        //         classItem++;
+        //         carrItem = document.getElementById(`carrousel__item-${classItem}`);
+        //     }
+        //     resultText += template(products[index]);
+        //     carrItem.innerHTML = resultText;
+        //     index++;
+        // }
         programCarrousel();
     }
 
@@ -87,6 +106,8 @@ class PageInicio {
         const products = await productController.getProducts();
         PageInicio.renderTemplateCards(products);
         PageInicio.renderTemplateCarrousel(products);
+        
+        waitProgress.style.display = 'none'; 
 
         console.log(`Se encontraron ${products.length} productos.`);
     }
