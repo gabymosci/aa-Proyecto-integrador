@@ -8918,7 +8918,7 @@ main {
   justify-content: center;
 }
 .main-header__cart-content {
-  background-color: rgba(198, 215, 225, 0.95);
+  background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: 5px;
   position: absolute;
@@ -9038,6 +9038,8 @@ main {
   box-shadow: var(--box-shadow);
   padding: 0.5em;
   margin-top: 1em;
+  margin-bottom: 1em;
+  align-items: center;
 }
 .main-header__cart-content-footer-total {
   width: auto;
@@ -9049,7 +9051,7 @@ main {
   justify-content: flex-end;
   padding-top: 2px;
 }
-.main-header__cart-content-btn-buy button {
+.main-header__cart-content-btn-buy {
   background-color: hsl(134deg, 58%, 40%);
   color: white;
   border-radius: 4px;
@@ -9058,14 +9060,30 @@ main {
   border: none;
   transition: 0.2s;
 }
-.main-header__cart-content-btn-buy button:hover {
+.main-header__cart-content-btn-buy:hover:not(:disabled) {
   background-color: hsl(134deg, 58%, 50%);
   transform: scale(1.1);
   cursor: pointer;
 }
-.main-header__cart-content-btn-buy button:active {
+.main-header__cart-content-btn-buy:active {
   background-color: hsl(134deg, 58%, 40%);
   color: hsl(0deg, 0%, 90%);
+}
+.main-header__cart-content-btn-buy:disabled {
+  background-color: lightgray;
+  color: white;
+  border-radius: 4px;
+  padding: 0.3em;
+  box-shadow: var(--box-shadow);
+}
+.main-header .mercadopago-button {
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+  border: none;
+  transition: 0.2s;
+}
+.main-header .mercadopago-button:hover {
+  transform: scale(1.02);
 }
 
 .in {
@@ -9153,7 +9171,7 @@ main {
     transform: scale(1);
   }
   to {
-    background-color: rgba(198, 215, 225, 0.95);
+    background-color: white;
     transform: scale(0);
   }
 }

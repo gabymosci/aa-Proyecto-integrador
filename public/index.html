@@ -93,8 +93,8 @@
                 </div>
 
                 <div id="main-header__cart-content-footer" class="main-header__cart-content-footer">
-                    <div class="main-header__cart-content-footer-total">Total: $10.220</div>
-                    <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
+                    <div class="main-header__cart-content-footer-total">Total: 10</div>
+                    <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
                 </div>
 -->
 
@@ -149,10 +149,11 @@
         <img src="./img/wait-spin.webp" alt="cargando...">
     </div>    
     
+    <!-- 
     <div id="cardPaymentBrick_container-modalbox">
         <div id="cardPaymentBrick_container"></div>
     </div>
-
+-->
 
 </body>
 </html>
@@ -161,9 +162,16 @@
 -                           Mercado Pago                             -
 ------------------------------------------------------------------ -->
 
-
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
+
+<script>
+    const mercadopago = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28', {
+        locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+    });
+    
+</script>
+<!--  
 <script>
     var mpEnviado = 0;
 
@@ -188,15 +196,15 @@
                 onSubmit: (cardFormData) => {
                     try {
                         // CANCELADA FUNCION DE PAGO ****DESARROLLAR****
-                        mpEnviado = 3;
-                        setTimeout(() => {
-                            document.querySelector('#cardPaymentBrick_container').classList.add('out');
-                            setTimeout(() => {
-                                document.querySelector('#cardPaymentBrick_container').classList.remove('out');
-                                document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
-                            },390);
+                        // mpEnviado = 3;
+                        // setTimeout(() => {
+                        //     document.querySelector('#cardPaymentBrick_container').classList.add('out');
+                        //     setTimeout(() => {
+                        //         document.querySelector('#cardPaymentBrick_container').classList.remove('out');
+                        //         document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
+                        //     },390);
 
-                        },2500);
+                        // },2500);
 
                         return new Promise((resolve, reject) => {
                             fetch("/process_payment", { 
@@ -234,3 +242,4 @@
 
     renderCardPaymentBrick(bricksBuilder);
 </script>
+-->

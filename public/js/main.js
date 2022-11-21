@@ -134,10 +134,8 @@ const cartContent           = document.querySelector('.main-header__cart-content
 const cartModalBox          = document.querySelector('.main-header__cart-modalbox');
 const payModalBox           = document.querySelector('#cardPaymentBrick_container-modalbox');
 const payContainer          = document.querySelector('#cardPaymentBrick_container');
-const payConfirmedModal     = document.querySelector('.main-header__pay-confirmed-modalbox');
 const _generalErrors        = document.querySelector('.general-errors');
 const waitProgress          = document.querySelector('.spin-modalbox');
-console.log('waitProgress:', waitProgress)
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
 
@@ -155,6 +153,12 @@ function toggleCart (autoClose) {
         },1500);
     }
     function close () {
+        if (document.getElementById('checkout-btn')) {
+            document.getElementById('checkout-btn').disabled = false;
+        }
+        if (document.querySelector('.mercadopago-button')) {
+            document.querySelector('.mercadopago-button').remove();
+        }
         if (autoClose === 1) {
             cartContent.classList.add('out');
             setTimeout(() => {
@@ -210,6 +214,7 @@ const programCartContent = () => {
             }
         }, false);
 
+/*
         // fuera de la ventana modal mercado pago
         payModalBox.addEventListener('click', e => {
             if (e.target.querySelector('#cardPaymentBrick_container')) {
@@ -229,6 +234,7 @@ const programCartContent = () => {
         payConfirmedModal.addEventListener('click', () => {
             payConfirmedModal.style.display = 'none';
         })
+*/
     };
 
 

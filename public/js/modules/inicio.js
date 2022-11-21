@@ -251,8 +251,10 @@ async function refreshCartContent (autoClose) {
     let cartFooter = 
     `
         <div class="main-header__cart-content-footer-total">Total: $${total}</div>
-        <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
+        <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
     `;
+
+    // <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
 
     if (cartQty > 0) {
         cartRedQty.innerHTML = cartQty;
@@ -265,13 +267,52 @@ async function refreshCartContent (autoClose) {
         newDiv.id = 'main-header__cart-content-footer';
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
         // ---Botón comprar
+        /*
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
         if (autoClose) {
             buyButton.disabled = true;
         }
         buyButton.addEventListener('click', () => {
-            buyOperation()
-        })
+            // buyOperation()
+        });*/
+
+        const confirmButton = document.getElementById('checkout-btn');
+        
+        if (autoClose) {
+            confirmButton.disabled = true;
+        }
+
+        document.getElementById("checkout-btn").addEventListener("click", function () {
+
+            waitProgress.style.display = 'flex';
+
+            const orderData = { 
+                description: 'Juguete',
+                price: 10,
+                quantity: 1,
+            };
+
+            fetch("/create_preference", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(orderData),
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (preference) {
+                    confirmButton.disabled = true;
+                    waitProgress.style.display = 'none';
+                    createCheckoutButton(preference.id);
+                })
+                .catch(function () {
+                    alert("Unexpected error");
+                });
+        });
+
+
     } else {
         if (deleteDiv) { deleteDiv.remove(); }
         cartRedQty.innerHTML = '';
@@ -282,6 +323,18 @@ async function refreshCartContent (autoClose) {
     return total;
 }
 
+function createCheckoutButton(preferenceId) {
+    // Initialize the checkout
+    mercadopago.checkout({
+        preference: {
+            id: preferenceId
+        },
+        render: {
+            container: '.main-header__cart-content', // Class name where the payment button will be displayed
+            label: 'Pagar', // Change the payment button text (optional)
+        }
+    });
+}
 
 /////////////////////////////////////////////////////////////////////
 //                          Botón Comprar                          //
@@ -339,7 +392,6 @@ async function buyOperation () {
         }, 400);
 
     })
-
 }
 
 
@@ -392,5 +444,7 @@ function programCarrousel () {
     }, 8000); //8000
 
 }
+
+
 
 export {refreshCartContent, PageInicio as default };
