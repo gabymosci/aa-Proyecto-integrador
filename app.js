@@ -11,7 +11,8 @@ import cors from 'cors';
 
 import mercadopago from 'mercadopago';
 mercadopago.configure({
-    access_token: "TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622",
+    // access_token: "TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622",    //gmosci
+    access_token: "TEST-6055126754063483-112209-0ed2fa572e20b229042ad663a67b9131-1244851160", //test
 });
 
 
@@ -43,14 +44,20 @@ app.post("/create_preference", (req, res) => {
 				title: req.body.description,
 				unit_price: Number(req.body.price),
 				quantity: Number(req.body.quantity),
-			}
+			},
 		],
 		back_urls: {
-			"success": "http://localhost:8080/feedback",
-			"failure": "http://localhost:8080/feedback",
-			"pending": "http://localhost:8080/feedback"
+			"success": "http://localhost:8080/",
+			"failure": "http://localhost:8080/",
+			"pending": "http://localhost:8080/"
 		},
+		// back_urls: {
+		// 	"success": "http://localhost:8080/feedback",
+		// 	"failure": "http://localhost:8080/feedback",
+		// 	"pending": "http://localhost:8080/feedback"
+		// },
 		auto_return: "approved",
+		binary_mode: true,
 	};
 
 

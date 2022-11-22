@@ -214,27 +214,6 @@ const programCartContent = () => {
             }
         }, false);
 
-/*
-        // fuera de la ventana modal mercado pago
-        payModalBox.addEventListener('click', e => {
-            if (e.target.querySelector('#cardPaymentBrick_container')) {
-                togglePay();
-            }
-
-        })
-
-        // tecla ESC Mercado Pago
-        document.addEventListener('keyup', e => {
-        if (e.key == 'Escape'  && payVisible()) {
-                togglePay();
-            }
-        }, false);
-
-        // cualquier click ventada de pago aprobado
-        payConfirmedModal.addEventListener('click', () => {
-            payConfirmedModal.style.display = 'none';
-        })
-*/
     };
 
 

@@ -286,11 +286,12 @@ async function refreshCartContent (autoClose) {
 
             waitProgress.style.display = 'flex';
 
-            const orderData = { 
-                description: 'Juguete',
-                price: 10,
+            const orderData = 
+                { 
+                description: 'Tu pedido',
+                price: total,
                 quantity: 1,
-            };
+                };
 
             fetch("/create_preference", {
                 method: "POST",
