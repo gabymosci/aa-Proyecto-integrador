@@ -255,6 +255,7 @@ async function refreshCartContent (autoClose) {
             buyButton.disabled = true;
         }
         buyButton.addEventListener('click', () => {
+            waitProgress.style.display = 'flex';
             buyOperation();
         });
 
@@ -297,7 +298,7 @@ async function buyOperation () {
     }
 
 
-    waitProgress.style.display = 'flex';
+    
     mpEnviado = 0;
     togglePay();
 
