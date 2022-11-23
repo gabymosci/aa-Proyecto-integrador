@@ -147,18 +147,18 @@ function toggleCart (autoClose) {
         cartContent.classList.add('in');
     } else {                        // Cierra 
         close(autoClose);
+        return;
     }
+
     if (autoClose && cartContentVisible()) {    // Autocierre
         setTimeout(() => {
             close(autoClose);
         },1500);
     }
     function close (autoClose) {
+        waitProgress.style.display = 'none';
         if (document.getElementById('checkout-btn')) {
             document.getElementById('checkout-btn').disabled = false;
-        }
-        if (document.querySelector('.mercadopago-button')) {
-            document.querySelector('.mercadopago-button').remove();
         }
         if (autoClose === 1) {
             cartContent.classList.add('out');
@@ -183,6 +183,7 @@ function togglePay () {
     }
 
     function closeMP () {
+        waitProgress.style.display = 'none';
         payContainer.classList.add('out');
         setTimeout(() => {
             payContainer.classList.remove('out');
@@ -197,21 +198,25 @@ function togglePay () {
 const programCartContent = () => {
         // Botón carrito
         cartBtn.addEventListener('click', () => {
-            toggleCart();
+            if (cartContentVisible()) {
+                toggleCart(1);
+            } else {
+                toggleCart();
+            }
         });
     
         // fuera de la ventana modal / botón X cerrar contenido carrito
         cartModalBox.addEventListener('click', e => {
             if (e.target.classList.contains('main-header__cart-modalbox') || 
                 e.target.classList.contains('main-header__cart-content-button-close')) {
-                    toggleCart();
+                    toggleCart(1);
             }
         });
 
         // tecla ESC carrito
         document.addEventListener('keyup', e => {
-        if (e.key == 'Escape'  && cartContentVisible()) {
-            toggleCart();
+        if (e.key == 'Escape'  && cartContentVisible() && !payVisible()){
+            toggleCart(1);
             }
         }, false);
 

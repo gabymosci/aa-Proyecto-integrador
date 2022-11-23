@@ -297,6 +297,7 @@ async function buyOperation () {
     }
 
 
+    waitProgress.style.display = 'flex';
     mpEnviado = 0;
     togglePay();
 

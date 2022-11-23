@@ -170,12 +170,9 @@
     }
 
     &__cart-content-btn-buy {
+        background-color: hsl(134, 58%, 40%);
         justify-content: flex-end;
         padding-top: 2px;
-    }
-
-    &__cart-content-btn-buy {
-        background-color: hsl(134, 58%, 40%);
         color: white;
         border-radius: 4px;
         padding: .3em;
@@ -194,6 +191,10 @@
             color: hsl(0, 0%, 90%);
         }
 
+        &:focus {
+            border: none;
+        }
+
         &:disabled {
             background-color: lightgray;
             color: white;
@@ -203,17 +204,6 @@
             }
     }
 
-    .mercadopago-button {
-        border-radius: 4px;
-        box-shadow: var(--box-shadow);
-        border: none;
-        transition: .2s;
-
-        &:hover {
-            transform: scale(1.02);
-        }
-
-    }
 }
 
 // -----------------------------------Efecto visuales

@@ -9048,11 +9048,9 @@ main {
   color: rgb(201, 54, 54);
 }
 .main-header__cart-content-btn-buy {
+  background-color: hsl(134deg, 58%, 40%);
   justify-content: flex-end;
   padding-top: 2px;
-}
-.main-header__cart-content-btn-buy {
-  background-color: hsl(134deg, 58%, 40%);
   color: white;
   border-radius: 4px;
   padding: 0.3em;
@@ -9069,21 +9067,15 @@ main {
   background-color: hsl(134deg, 58%, 40%);
   color: hsl(0deg, 0%, 90%);
 }
+.main-header__cart-content-btn-buy:focus {
+  border: none;
+}
 .main-header__cart-content-btn-buy:disabled {
   background-color: lightgray;
   color: white;
   border-radius: 4px;
   padding: 0.3em;
   box-shadow: var(--box-shadow);
-}
-.main-header .mercadopago-button {
-  border-radius: 4px;
-  box-shadow: var(--box-shadow);
-  border: none;
-  transition: 0.2s;
-}
-.main-header .mercadopago-button:hover {
-  transform: scale(1.02);
 }
 
 .in {
