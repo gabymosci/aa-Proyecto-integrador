@@ -235,7 +235,7 @@ async function refreshCartContent (autoClose) {
     let cartFooter = 
     `
         <div class="main-header__cart-content-footer-total">Total: $${total}</div>
-        <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
+        <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn" disabled>Confirmar compra</button></div>
     `;
 
     if (cartQty > 0) {
@@ -248,8 +248,7 @@ async function refreshCartContent (autoClose) {
         newDiv.classList.add('main-header__cart-content-footer');
         newDiv.id = 'main-header__cart-content-footer';
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
-        // ---Botón comprar
-        
+        // ---Botón Confirmar compra
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
         if (autoClose) {
             buyButton.disabled = true;
