@@ -200,7 +200,7 @@ function programCart () {
 //////////////////////////////////////////////////////////////////////
 //                       Refresh cart content                       //
 //////////////////////////////////////////////////////////////////////
-async function refreshCartContent (autoClose) {
+async function refreshCartContent () {
     const productId         = document.querySelectorAll('.card_id')
     const prices            = document.querySelectorAll('#product-price');
     const quanty            = document.querySelectorAll('#product-quantity');
@@ -208,7 +208,6 @@ async function refreshCartContent (autoClose) {
     const cartRedQty        = document.querySelector('.main-header__cart-button-container-qty');
     const productContainer  = document.querySelectorAll('.main-header__cart-content-products');
     const cartContainer     = document.querySelector('.main-header__cart-content');
-    let deleteDiv           = document.getElementById('main-header__cart-content-footer');
     let productRead ;
     let cartQty = 0;
     let subTotal;
@@ -235,13 +234,13 @@ async function refreshCartContent (autoClose) {
     let cartFooter = 
     `
         <div class="main-header__cart-content-footer-total">Total: $${total}</div>
-        <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn" disabled>Confirmar compra</button></div>
+        <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
     `;
 
     if (cartQty > 0) {
         cartRedQty.innerHTML = cartQty;
         const lastProduct = document.querySelectorAll('.main-header__cart-content-products');
-        if (deleteDiv) { deleteDiv.remove(); }
+        if (document.getElementById('main-header__cart-content-footer')) { document.getElementById('main-header__cart-content-footer').remove(); }
         cartRedQty.style.display = 'flex';
         newDiv = document.createElement('div');
         newDiv.innerHTML = cartFooter;
@@ -250,16 +249,13 @@ async function refreshCartContent (autoClose) {
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
         // ---Botón Confirmar compra
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
-        if (autoClose) {
-            buyButton.disabled = true;
-        }
         buyButton.addEventListener('click', () => {
             waitProgress.style.display = 'flex';
             buyOperation();
         });
 
     } else {
-        if (deleteDiv) { deleteDiv.remove(); }
+        if (document.getElementById('main-header__cart-content-footer')) { document.getElementById('main-header__cart-content-footer').remove(); }
         cartRedQty.innerHTML = '';
         cartRedQty.style.display = 'none';
         if (cartContentVisible()) { toggleCart(); }
