@@ -5,14 +5,14 @@ import routerProductsCart from './routers/productscart.js';
 import config from './config.js';
 import cors from 'cors';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 
-// ***********************ocultar access_token*******************
 
 import mercadopago from 'mercadopago';
 mercadopago.configure({
-    // access_token: "TEST-1866277456518650-111516-167af884686fe8913a0a42afa8665f56-59138622",    //gmosci
-    access_token: "TEST-6055126754063483-112209-0ed2fa572e20b229042ad663a67b9131-1244851160", //test
+    access_token: process.env.ACCESS_TOKEN, 
 });
 
 
@@ -32,6 +32,7 @@ app.use('/api/products', routerProducts);
 app.use('/api/productscart', routerProductsCart);
 
 
+
 //////////////////////////////////////////////////////////////////////
 //                           Mercado Pago                           //
 //////////////////////////////////////////////////////////////////////
@@ -47,15 +48,10 @@ app.post("/create_preference", (req, res) => {
 			},
 		],
 		back_urls: {
-			"success": "http://localhost:8080/",
-			"failure": "http://localhost:8080/",
-			"pending": "http://localhost:8080/"
+			"success": "http://localhost:8080/feedback",
+			"failure": "http://localhost:8080/feedback",
+			"pending": "http://localhost:8080/feedback"
 		},
-		// back_urls: {
-		// 	"success": "http://localhost:8080/feedback",
-		// 	"failure": "http://localhost:8080/feedback",
-		// 	"pending": "http://localhost:8080/feedback"
-		// },
 		auto_return: "approved",
 		binary_mode: true,
 	};
@@ -71,11 +67,12 @@ app.post("/create_preference", (req, res) => {
 		});
 });
 
+
 app.get('/feedback', function (req, res) {
 	res.json({
 		Payment: req.query.payment_id,
 		Status: req.query.status,
-		MerchantOrder: req.query.merchant_order_id
+		MerchantOrder: req.query.merchant_order_id,
 	});
 });
 

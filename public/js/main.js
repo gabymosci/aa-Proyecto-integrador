@@ -136,6 +136,7 @@ const payModalBox           = document.querySelector('#cardPaymentBrick_containe
 const payContainer          = document.querySelector('#cardPaymentBrick_container');
 const _generalErrors        = document.querySelector('.general-errors');
 const waitProgress          = document.querySelector('.spin-modalbox');
+const payConfirmedModal     = document.querySelector('.main-header__pay-confirmed-modalbox');
 const cartContentVisible    = () => document.querySelector('.main-header__cart-modalbox').style.display === 'flex';
 const payVisible            = () => document.querySelector('#cardPaymentBrick_container-modalbox').style.display === 'flex';
 
@@ -152,7 +153,7 @@ function toggleCart (autoClose) {
             close(autoClose);
         },1500);
     }
-    function close () {
+    function close (autoClose) {
         if (document.getElementById('checkout-btn')) {
             document.getElementById('checkout-btn').disabled = false;
         }
@@ -213,6 +214,26 @@ const programCartContent = () => {
             toggleCart();
             }
         }, false);
+
+        // fuera de la ventana modal mercado pago
+        payModalBox.addEventListener('click', e => {
+            if (e.target.querySelector('#cardPaymentBrick_container')) {
+                togglePay();
+            }
+
+        })
+
+        // tecla ESC Mercado Pago
+        document.addEventListener('keyup', e => {
+        if (e.key == 'Escape'  && payVisible()) {
+                togglePay();
+            }
+        }, false);
+
+        // cualquier click ventana de pago aprobado
+        payConfirmedModal.addEventListener('click', () => {
+            payConfirmedModal.style.display = 'none';
+        })
 
     };
 

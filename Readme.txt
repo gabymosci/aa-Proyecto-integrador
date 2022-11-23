@@ -19,5 +19,5 @@ Cuando pide e-mail:
 test_user_97026521@testuser.com
 
 Resto de los datos:
-Cargar cualquier cosa
+Completar con cualquier cosa
 

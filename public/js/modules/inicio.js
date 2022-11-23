@@ -3,6 +3,12 @@ import productCartController from '/js/controllers/productcart.js';
 import {toggleCart, cartContentVisible, togglePay, payVisible, waitProgress} from '../main.js';
 
 
+// const mercadopago = new MercadoPago('TEST-c19c239c-7489-4f55-877d-7997ac4306d5', {  
+//     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+// });
+
+
+
 console.warn('🆗: Módulo PageInicio cargado.');
 
 
@@ -83,20 +89,6 @@ class PageInicio {
                 if (qtyOfert >= 9) {break;}
             }
         }
-
-
-
-        // let index = products.length - 9;
-        // for (let i=0; i < 9; i++) {
-        //     if(i % 3 === 0) {
-        //         resultText = '';
-        //         classItem++;
-        //         carrItem = document.getElementById(`carrousel__item-${classItem}`);
-        //     }
-        //     resultText += template(products[index]);
-        //     carrItem.innerHTML = resultText;
-        //     index++;
-        // }
         programCarrousel();
     }
 
@@ -254,6 +246,8 @@ async function refreshCartContent (autoClose) {
         <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
     `;
 
+    // <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
+
     // <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
 
     if (cartQty > 0) {
@@ -267,15 +261,16 @@ async function refreshCartContent (autoClose) {
         newDiv.id = 'main-header__cart-content-footer';
         lastProduct[lastProduct.length - 1].insertAdjacentElement('afterEnd',newDiv);
         // ---Botón comprar
-        /*
+        
         const buyButton = document.querySelector('.main-header__cart-content-btn-buy');
         if (autoClose) {
             buyButton.disabled = true;
         }
         buyButton.addEventListener('click', () => {
-            // buyOperation()
-        });*/
+            buyOperation()
+        });
 
+        /*
         const confirmButton = document.getElementById('checkout-btn');
         
         if (autoClose) {
@@ -312,7 +307,7 @@ async function refreshCartContent (autoClose) {
                     alert("Unexpected error");
                 });
         });
-
+        */
 
     } else {
         if (deleteDiv) { deleteDiv.remove(); }
@@ -324,6 +319,7 @@ async function refreshCartContent (autoClose) {
     return total;
 }
 
+/*
 function createCheckoutButton(preferenceId) {
     // Initialize the checkout
     mercadopago.checkout({
@@ -336,6 +332,7 @@ function createCheckoutButton(preferenceId) {
         }
     });
 }
+*/
 
 /////////////////////////////////////////////////////////////////////
 //                          Botón Comprar                          //
@@ -367,7 +364,7 @@ async function buyOperation () {
 
     mpEnviado = 0;
     togglePay();
-    const payMPButton = document.querySelector('.svelte-nd35fe');
+    const payMPButton = document.querySelector('.svelte-1a8kh4a');
     payMPButton.addEventListener('click', () => {
         setTimeout(() => {
             if (mpEnviado === 3) {
@@ -389,6 +386,8 @@ async function buyOperation () {
                 setTimeout(() => {
                     payConfirmedModal.style.display = 'flex';
                 },2500);
+
+                mpEnviado = 0;
             }
         }, 400);
 

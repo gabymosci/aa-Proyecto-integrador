@@ -9,6 +9,7 @@
     <link rel="icon" href="img/logo.png">
     <script defer src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>    
     <script defer src="js/vendors/paginate.js"></script>
+    <!-- <script defer src="https://sdk.mercadopago.com/js/v2"></script> -->
     <script defer src="js/Card.js"></script>
     <script defer src="js/main.js" type="module"></script>
 </head>
@@ -146,23 +147,95 @@
     </footer>
 
     <div class="spin-modalbox">
-        <img src="./img/wait-spin.webp" alt="cargando...">
+        <img src="./img/wait-spin.gif" alt="cargando...">
     </div>    
     
+    <div id="cardPaymentBrick_container-modalbox">
+        <div id="cardPaymentBrick_container"></div>
+    </div>
+
 </body>
 </html>
-
-<!-- -----------------------------------------------------------------
--                           Mercado Pago                             -
------------------------------------------------------------------- -->
 
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
 
-<script>
-    // const mercadopago = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28', {     //gmosci
-    const mercadopago = new MercadoPago('TEST-c19c239c-7489-4f55-877d-7997ac4306d5', {  //test
+<!-- <script>
+    const mercadopago = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28', {
         locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
     });
     
+</script> -->
+
+<script>
+    var mpEnviado = 0;
+
+    const mp = new MercadoPago('TEST-c19c239c-7489-4f55-877d-7997ac4306d5');
+    const bricksBuilder = mp.bricks();
+
+    const renderCardPaymentBrick = async (bricksBuilder) => {
+
+        const settings = {
+            initialization: {
+            amount: 100, //value of the payment to be processed
+
+            },
+            customization: {
+                visual: {
+                    style: {
+                        theme: 'default' // 'default' |'dark' | 'bootstrap' | 'flat'
+                    } 
+                }
+            },
+            callbacks: {
+                onSubmit: (cardFormData) => {
+                    try {
+                        //CANCELADA FUNCION DE PAGO ****DESARROLLAR****
+
+                        // mpEnviado = 3;
+                        // setTimeout(() => {
+                        //     document.querySelector('#cardPaymentBrick_container').classList.add('out');
+                        //     setTimeout(() => {
+                        //         document.querySelector('#cardPaymentBrick_container').classList.remove('out');
+                        //         document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
+                        //     },390);
+
+                        // },2500);
+
+                        return new Promise((resolve, reject) => {
+                            fetch("/create_preference", { 
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(cardFormData)
+                            })
+                            .then((response) => {
+                                console.log('aceptado')
+                                // get payment result
+                                resolve();
+                            })
+                            .catch((error) => {
+                                // get payment result error
+                                reject();
+                            })
+                        });
+                    } catch (error){
+                        console.error('ERROR POST', error);
+                    }
+                },
+
+                onReady: () => {
+                    // handle form ready
+                },
+                onError: (error) => {
+                    alert('error');
+                }
+            }                       
+        }
+
+        cardPaymentBrickController = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
+    };
+
+    renderCardPaymentBrick(bricksBuilder);
 </script>
