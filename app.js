@@ -5,9 +5,6 @@ import routerProductsCart from './routers/productscart.js';
 import config from './config.js';
 import cors from 'cors';
 
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 
 // await ProductModelMongoDB.connectDB();
 // ProductModelMongoDB.connectDB();
