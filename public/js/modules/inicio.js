@@ -1,12 +1,6 @@
 import productController from '/js/controllers/product.js';
 import productCartController from '/js/controllers/productcart.js';
-import {toggleCart, cartContentVisible, togglePay, payVisible, waitProgress} from '../main.js';
-
-
-// const mercadopago = new MercadoPago('TEST-c19c239c-7489-4f55-877d-7997ac4306d5', {  
-//     locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-// });
-
+import {toggleCart, cartContentVisible, togglePay, waitProgress} from '../main.js';
 
 
 console.warn('🆗: Módulo PageInicio cargado.');
@@ -19,8 +13,6 @@ async function initializeProductsCart() {
         await productCartController.deleteProductCart(productCart.id);;
     }
 }
-
-// initializeProductsCart();
 
 class PageInicio {
 
@@ -246,10 +238,6 @@ async function refreshCartContent (autoClose) {
         <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
     `;
 
-    // <div><button class="main-header__cart-content-btn-buy btn btn-primary btn-lg btn-block" id="checkout-btn">Confirmar compra</button></div>
-
-    // <div class="main-header__cart-content-btn-buy"><button>Comprar</button></div>
-
     if (cartQty > 0) {
         cartRedQty.innerHTML = cartQty;
         const lastProduct = document.querySelectorAll('.main-header__cart-content-products');
@@ -267,47 +255,8 @@ async function refreshCartContent (autoClose) {
             buyButton.disabled = true;
         }
         buyButton.addEventListener('click', () => {
-            buyOperation()
+            buyOperation();
         });
-
-        /*
-        const confirmButton = document.getElementById('checkout-btn');
-        
-        if (autoClose) {
-            confirmButton.disabled = true;
-        }
-
-        document.getElementById("checkout-btn").addEventListener("click", function () {
-
-            waitProgress.style.display = 'flex';
-
-            const orderData = 
-                { 
-                description: 'Tu pedido',
-                price: total,
-                quantity: 1,
-                };
-
-            fetch("/create_preference", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(orderData),
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (preference) {
-                    confirmButton.disabled = true;
-                    waitProgress.style.display = 'none';
-                    createCheckoutButton(preference.id);
-                })
-                .catch(function () {
-                    alert("Unexpected error");
-                });
-        });
-        */
 
     } else {
         if (deleteDiv) { deleteDiv.remove(); }
@@ -319,20 +268,6 @@ async function refreshCartContent (autoClose) {
     return total;
 }
 
-/*
-function createCheckoutButton(preferenceId) {
-    // Initialize the checkout
-    mercadopago.checkout({
-        preference: {
-            id: preferenceId
-        },
-        render: {
-            container: '.main-header__cart-content', // Class name where the payment button will be displayed
-            label: 'Pagar', // Change the payment button text (optional)
-        }
-    });
-}
-*/
 
 /////////////////////////////////////////////////////////////////////
 //                          Botón Comprar                          //
@@ -364,6 +299,7 @@ async function buyOperation () {
 
     mpEnviado = 0;
     togglePay();
+
     const payMPButton = document.querySelector('.svelte-1a8kh4a');
     payMPButton.addEventListener('click', () => {
         setTimeout(() => {
@@ -377,7 +313,7 @@ async function buyOperation () {
                 `;
 
                 // Luego de comprar se debe vaciar la collection productscarts porque si compra de nuevo 
-                // se volverían a procesar los anteriores. Al refrescar o recargar la página también se borra.
+                // se volverían a procesar los anteriores.
 
                 initializeProductsCart(); //*** Deshabilitar sólo para desarrollo ***
 

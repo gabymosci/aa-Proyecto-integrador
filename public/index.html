@@ -9,7 +9,6 @@
     <link rel="icon" href="img/logo.png">
     <script defer src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>    
     <script defer src="js/vendors/paginate.js"></script>
-    <!-- <script defer src="https://sdk.mercadopago.com/js/v2"></script> -->
     <script defer src="js/Card.js"></script>
     <script defer src="js/main.js" type="module"></script>
 </head>
@@ -159,14 +158,6 @@
 
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-
-<!-- <script>
-    const mercadopago = new MercadoPago('TEST-b0f084c6-dd31-43a9-b60d-6ad662efbe28', {
-        locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
-    });
-    
-</script> -->
-
 <script>
     var mpEnviado = 0;
 
@@ -191,16 +182,14 @@
                 onSubmit: (cardFormData) => {
                     try {
                         //CANCELADA FUNCION DE PAGO ****DESARROLLAR****
-
-                        // mpEnviado = 3;
-                        // setTimeout(() => {
-                        //     document.querySelector('#cardPaymentBrick_container').classList.add('out');
-                        //     setTimeout(() => {
-                        //         document.querySelector('#cardPaymentBrick_container').classList.remove('out');
-                        //         document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
-                        //     },390);
-
-                        // },2500);
+                        mpEnviado = 3;
+                        setTimeout(() => {
+                            document.querySelector('#cardPaymentBrick_container').classList.add('out');
+                            setTimeout(() => {
+                                document.querySelector('#cardPaymentBrick_container').classList.remove('out');
+                                document.querySelector('#cardPaymentBrick_container-modalbox').style.display = 'none';
+                            },390);
+                        },2500);
 
                         return new Promise((resolve, reject) => {
                             fetch("/create_preference", { 
@@ -211,7 +200,6 @@
                                 body: JSON.stringify(cardFormData)
                             })
                             .then((response) => {
-                                console.log('aceptado')
                                 // get payment result
                                 resolve();
                             })

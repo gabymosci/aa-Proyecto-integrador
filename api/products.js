@@ -35,7 +35,6 @@ model.createProduct({name: 'Mesas y Sillas',price: 1199,stock: 0,brand: '',categ
 model.createProduct({name: 'Moto Andarin',price: 8499,stock: 0,brand: '',category: '',shortDescription: 'Oferta imperdible!!!',fullDescription: '',freeDelivery: 0,fromAge: 0,toAge: 0,ageYM: '',image: 'o-triciclo.jpg',card: true});
 model.createProduct({name: 'Juego de playa',price: 3199,stock: 0,brand: '',category: '',shortDescription: 'Oferta imperdible!!!',fullDescription: '',freeDelivery: 0,fromAge: 0,toAge: 0,ageYM: '',image: 'o-balde.jpg',card: true});
 
-// Los últimos 9 productos son las ofertas que cargan el carrousel (propiedad card: false)
 model.createProduct({name: 'Dinosaurio',price: 4499,stock: 0,brand: '',category: '',shortDescription: 'Oferta imperdible!!!',fullDescription: '',freeDelivery: 0,fromAge: 0,toAge: 0,ageYM: '',image: 'o-dinosaurio.jpg',card: false});
 model.createProduct({name: 'Tren',price: 5999,stock: 0,brand: '',category: '',shortDescription: 'Oferta imperdible!!!',fullDescription: '',freeDelivery: 0,fromAge: 0,toAge: 0,ageYM: '',image: 'o-tren.jpg',card: false});
 model.createProduct({name: 'Camion',price: 2999,stock: 0,brand: '',category: '',shortDescription: 'Oferta imperdible!!!',fullDescription: '',freeDelivery: 0,fromAge: 0,toAge: 0,ageYM: '',image: 'o-camion.jpg',card: false});

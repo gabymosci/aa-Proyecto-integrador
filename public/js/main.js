@@ -328,4 +328,4 @@ function  programSearchInput () {
     })
 }
 
-export {toggleCart, cartContentVisible, validateInput, togglePay, payVisible, waitProgress};
+export {toggleCart, cartContentVisible, validateInput, togglePay, waitProgress};
