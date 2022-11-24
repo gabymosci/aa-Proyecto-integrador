@@ -20,6 +20,7 @@ class PageAlta {
     static tableVisible  = () => document.querySelector('.section-products-table').style.display === 'flex';
 
     static async toggleTable () {
+        waitProgress.style.display = 'flex';
         if (!this.tableVisible()) {
             document.querySelector('.section-products-table').style.display = 'flex';
             PageAlta.btnUpdate.hidden = false;
@@ -27,13 +28,14 @@ class PageAlta {
             await PageAlta.loadTable();
             PageAlta.buttonToggleTable.innerHTML = 'Ocultar todos los productos';
             PageAlta.emptyForm();
-    } else {
+        } else {
             document.querySelector('.section-products-table').style.display = 'none';
             PageAlta.btnUpdate.hidden = true;
             PageAlta.btnCancel.hidden = true;
             PageAlta.buttonToggleTable.innerHTML = 'Mostrar todos los productos';
             PageAlta.emptyForm();
         }
+        waitProgress.style.display = 'none';
     }
 
     static async saveProduct(product) {
