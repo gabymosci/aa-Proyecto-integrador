@@ -15,9 +15,7 @@ Mastercard:	  5031 7557 3453 0604
 Visa:		  4509 9535 6623 3704
 American Express: 3711 803032 57522
 
-Cuando pide e-mail:
-test_user_97026521@testuser.com
+E-mail: test_user_97026521@testuser.com
 
-Resto de los datos:
-Completar con cualquier cosa
+Resto de los datos: Completar con cualquier cosa
 
